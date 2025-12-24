@@ -1,19 +1,18 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
-import backgroundImage from '@/public/assets/hero.jpg';
+import backgroundImage from '@/public/assets/contactHero.jpg';
 import Navigation from './Navigation';
 import logo from '@/public/assets/whiteLogo.png';
 import bgShape from '@/public/assets/bgShape.png';
 
-export default function HeroSection() {
+export default function ContactHeroSection() {
   return (
-    <section className="relative min-h-[80vh] overflow-hidden">
-      {/* Background Image Container - Replace with your image */}
+    <section className="relative min-h-[60vh] overflow-hidden">
+      {/* Background Image Container */}
       <div className="absolute inset-0 bg-[#0a1628]">
-        <Image src={backgroundImage} alt="Hero Background" fill className="object-cover" />
+        <Image src={backgroundImage} alt="Contact Hero Background" fill className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#040437]/95 via-[#040437]/80 to-[#040437]/30"></div>
         
         {/* Geometric circles overlay */}
@@ -73,58 +72,45 @@ export default function HeroSection() {
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 1, ease: "easeOut" }}
       >
-        <Image src={bgShape} alt="Logo" className="absolute bottom-0 left-0" />
+        {/* <Image src={bgShape} alt="Background Shape" className="absolute bottom-0 left-0" /> */}
       </motion.div>
       
       {/* Hero Content */}
-      <div className="relative z-10 px-8 lg:px-16 pt-20 pb-32 max-w-[1440px] mx-auto">
-        <div className="max-w-3xl">
+      <div className="relative z-10 px-8 lg:px-16 pt-20 pb-20 max-w-[1440px] mx-auto">
+        <div className="">
           <motion.h1 
-            className="text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-8 leading-tight"
+            className="text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-8 leading-tight text-center"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            Décidez vite,<br />agissez juste.
+            Construisons<br />ensemble la suite
           </motion.h1>
           
           <motion.p 
-            className="text-xl lg:text-2xl text-white/90 mb-12 leading-relaxed max-w-2xl"
+            className="text-lg lg:text-xl text-white mb-6 leading-relaxed max-w-3xl mx-auto text-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           >
-            Ne laissez plus la complexité de vos données ou de vos processus freiner votre croissance. Que vous soyez une ETI, PME ou grande organisation, IzyTechnology vous aide à <span className="text-yellow-500">fiabiliser vos données, sécuriser vos revenus et simplifier vos opérations.</span>
+            Dites-nous en quelques mots ce qui vous préoccupe aujourd&apos;hui :{' '}
+            <span className="text-yellow-500 font-semibold">fiabilité des chiffres</span>,{' '}
+            <span className="text-yellow-500 font-semibold">sécurisation des revenus</span>,{' '}
+            <span className="text-yellow-500 font-semibold">fluidité de vos processus</span> ou{' '}
+            <span className="text-yellow-500 font-semibold">mise en place d&apos;outils adaptés</span>.
           </motion.p>
           
-          {/* Quote with accent line */}
-          <motion.div 
-            className="flex items-start gap-4 mb-12"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
+          <motion.p 
+            className="text-base lg:text-lg text-white/90 leading-relaxed max-w-3xl mx-auto text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
-            <div className="w-1 h-24 bg-yellow-500 shrink-0 mt-1"></div>
-            <p className="text-lg lg:text-xl text-white/90 leading-relaxed">
-              Nous mettons 20 ans d&apos;expérience terrain au service de vos enjeux, avec une exigence de rigueur et de simplicité.
-            </p>
-          </motion.div>
-          
-          {/* CTA Button */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
-          >
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-red-600 text-white font-semibold hover:bg-red-700 transition-colors rounded-lg text-lg"
-            >
-              Parler de vos enjeux →
-            </Link>
-          </motion.div>
+            Nous reviendrons vers vous pour un premier échange, sans engagement, afin de comprendre vos enjeux et vérifier si nous sommes le bon partenaire pour vous.
+          </motion.p>
         </div>
       </div>
     </section>
   );
 }
+

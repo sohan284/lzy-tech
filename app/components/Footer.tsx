@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import logo from '@/public/assets/whiteLogo.png';
 import backgroundImage from '@/public/assets/whiteLogo.png';
   export default function Footer() {
@@ -9,12 +10,12 @@ import backgroundImage from '@/public/assets/whiteLogo.png';
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
           {/* Left - Logo and Tagline */}
           <div className="flex-shrink-0">
-            <div className="flex items-center flex-col gap-2 ">
+            <Link href="/" className="flex items-center flex-col gap-2 hover:opacity-80 transition-opacity">
               <div className="relative">
                 <Image src={logo} alt="Logo" className="w-10 h-10" />
               </div>
               <span className="text-2xl font-bold">IzyTechnology</span>
-            </div>
+            </Link>
             <p className="text-xs  text-right font-mono -mt-1">simplement efficace</p>
           </div>
 
@@ -42,12 +43,12 @@ import backgroundImage from '@/public/assets/whiteLogo.png';
           <p className="text-white/80">
             © 2025 IzyTechnology. Tous droits réservés.
           </p>
-          <a 
-            href="/mentions-legales" 
+          <Link 
+            href="/privacy" 
             className="text-white/80 hover:text-white transition-colors underline"
           >
             Mentions légales et Données personnelles
-          </a>
+          </Link>
         </div>
       </div>
     </footer>

@@ -1,3 +1,7 @@
+'use client';
+
+import Link from 'next/link';
+import { motion } from 'framer-motion';
 import ServiceCard from './ServiceCard';
 
 // Icon components
@@ -86,7 +90,13 @@ export default function ServicesSection() {
     <section className="w-full py-20 px-4 sm:px-6 lg:px-8 bg-[#F6F2E7]">
       <div className="max-w-[1440px] mx-auto">
         {/* Title Section */}
-        <div className="mb-12 text-center max-w-4xl mx-auto">
+        <motion.div 
+          className="mb-12 text-center max-w-4xl mx-auto"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-6">
             Là où nous intervenons
           </h2>
@@ -94,10 +104,22 @@ export default function ServicesSection() {
             Nous intervenons là où la donnée, les processus et les outils se rejoignent, avec un{' '}
             <span className="text-orange-500 font-semibold">impact direct sur vos revenus et vos opérations</span>.
           </p>
-        </div>
+        </motion.div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.1
+              }
+            }
+          }}
+        >
           {services.map((service, index) => (
             <ServiceCard
               key={index}
@@ -106,16 +128,29 @@ export default function ServicesSection() {
               description={service.description}
               backgroundImage={service.backgroundImage}
               isDownloadCard={service.isDownloadCard}
+              index={index}
             />
           ))}
-        </div>
+        </motion.div>
 
         {/* CTA Button */}
-        <div className="text-center">
-          <button className="px-8 py-4 bg-red-600 text-white font-semibold hover:bg-red-700 transition-colors rounded-lg text-lg">
-            Consolidez vos données et sécurisez vos revenus →
-          </button>
-        </div>
+        <motion.div 
+          className="text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+        >
+          <Link href="/contact">
+            <motion.button 
+              className="px-8 py-4 bg-red-600 text-white font-semibold hover:bg-red-700 transition-colors rounded-lg text-lg"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Consolidez vos données et sécurisez vos revenus →
+            </motion.button>
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

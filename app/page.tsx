@@ -11,11 +11,19 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <HeroSection />
-      <AboutSection />
+      <section id="approche" className="scroll-mt-20">
+        <AboutSection />
+      </section>
       <FeaturesSection />
-      <ServicesSection />
-      <PartnershipSection />
-      <ClientsSection />
+      <section id="services" className="scroll-mt-20">
+        <ServicesSection />
+      </section>
+      <section id="engagements" className="scroll-mt-20">
+        <PartnershipSection />
+      </section>
+      <section id="clients" className="scroll-mt-20">
+        <ClientsSection />
+      </section>
       <CTASection />
       <TrustSection />
     </div>
