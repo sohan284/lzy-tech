@@ -1,3 +1,6 @@
+'use client';
+
+import { motion } from 'framer-motion';
 import FeatureCard from './FeatureCard';
 
 // Icon components - defined outside render
@@ -102,16 +105,29 @@ export default function FeaturesSection() {
   return (
     <section className="w-full py-20 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="max-w-[1440px] mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.2
+              }
+            }
+          }}
+        >
           {features.map((feature, index) => (
             <FeatureCard
               key={index}
               icon={feature.icon}
               title={feature.title}
               description={feature.description}
+              index={index}
             />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
