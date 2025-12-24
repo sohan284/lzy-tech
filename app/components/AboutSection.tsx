@@ -9,7 +9,7 @@ export default function AboutSection() {
           {/* Globe Icon */}
           <div className="flex justify-left mb-6">
             <svg 
-              className="w-12 h-12 text-[#002FA7]" 
+              className="w-12 h-12 text-primary" 
               fill="none" 
               stroke="currentColor" 
               viewBox="0 0 24 24"
@@ -24,7 +24,7 @@ export default function AboutSection() {
           </div>
 
           {/* Main Headline */}
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#002FA7] mb-8 text-left leading-tight">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-8 text-left leading-tight">
             Depuis l&apos;Afrique, avec la rigueur des standards internationaux
           </h2>
 

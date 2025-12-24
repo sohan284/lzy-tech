@@ -1,12 +1,11 @@
 import Link from 'next/link';
-
+import logo from '@/public/assets/redLogo.png';
+import Image from 'next/image';
 export default function Navigation() {
   return (
     <nav className="relative z-20 flex items-center justify-between px-8 lg:px-16 py-6 max-w-[1440px] mx-auto">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-red-600 rounded flex items-center justify-center">
-              <span className="text-white font-bold text-sm">IZ</span>
-            </div>
+            <Image src={logo} alt="Logo" className="w-10 h-10" />
             <span className="text-white text-xl font-semibold">Izy Technology</span>
           </div>
           

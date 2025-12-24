@@ -1,9 +1,11 @@
 import Image from 'next/image';
 import backgroundImage from '@/public/assets/hero.jpg';
 import Navigation from './Navigation';
+import logo from '@/public/assets/whiteLogo.png';
+import bgShape from '@/public/assets/bgShape.png';
 export default function HeroSection() {
     return (
-      <section className="relative min-h-screen overflow-hidden">
+      <section className="relative min-h-[80vh] overflow-hidden">
         {/* Background Image Container - Replace with your image */}
         <div className="absolute inset-0 bg-[#0a1628]">
           <Image src={backgroundImage} alt="Hero Background" fill className="object-cover" />
@@ -11,15 +13,16 @@ export default function HeroSection() {
           
           {/* Geometric circles overlay */}
           <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-20 left-10 w-96 h-96 border border-blue-400/30 rounded-full"></div>
-            <div className="absolute top-40 left-32 w-64 h-64 border border-blue-400/20 rounded-full"></div>
-            <div className="absolute top-10 left-20 w-48 h-48 border border-blue-400/40 rounded-full"></div>
+            <div className="absolute top-20 left-10 w-96 h-96 border border-primary/30 rounded-full"></div>
+            <div className="absolute top-40 left-32 w-64 h-64 border border-primary/20 rounded-full"></div>
+            <div className="absolute top-10 left-20 w-48 h-48 border border-primary/40 rounded-full"></div>
           </div>
         </div>
         
         {/* Navigation */}
        <Navigation/>
-        
+        <Image src={logo} alt="Logo" className="absolute  opacity-10 left-[20%] top-[10%] w-[25vw] h-[25vw]" />
+        <Image src={bgShape} alt="Logo" className="absolute bottom-0 left-0 " />
         {/* Hero Content */}
         <div className="relative z-10 px-8 lg:px-16 pt-20 pb-32 max-w-[1440px] mx-auto">
           <div className="max-w-3xl">

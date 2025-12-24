@@ -10,7 +10,7 @@ function SubmitButton() {
     <button
       type="submit"
       disabled={pending}
-      className="w-full px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+      className="w-full px-8 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 transition-colors shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
     >
       {pending ? 'Sending...' : 'Send Message'}
     </button>
@@ -35,7 +35,7 @@ export default function ContactForm({ submitContactForm }: { submitContactForm: 
             id="name"
             name="name"
             required
-            className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent dark:bg-gray-700 dark:text-white outline-none transition-colors"
+            className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:text-white outline-none transition-colors"
             placeholder="Your name"
           />
           {state?.errors?.name && (
@@ -52,7 +52,7 @@ export default function ContactForm({ submitContactForm }: { submitContactForm: 
             id="email"
             name="email"
             required
-            className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent dark:bg-gray-700 dark:text-white outline-none transition-colors"
+            className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:text-white outline-none transition-colors"
             placeholder="your.email@example.com"
           />
           {state?.errors?.email && (
