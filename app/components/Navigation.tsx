@@ -1,27 +1,78 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
 import logo from '@/public/assets/redLogo.png';
 import Image from 'next/image';
 
 export default function Navigation() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [isAtTop, setIsAtTop] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Check if at top
+      setIsAtTop(currentScrollY < 10);
+      
+      // Show header when at top or scrolling up
+      if (currentScrollY < 10) {
+        setIsVisible(true);
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling up
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY) {
+        // Scrolling down
+        setIsVisible(false);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
+
+  const handleScrollTo = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    setIsMobileMenuOpen(false);
+  };
+
+  const handleLinkClick = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
-    <nav className="relative z-20 flex items-center justify-between px-8 lg:px-16 py-6 max-w-[1440px] mx-auto">
+    <>
+      <motion.nav 
+        className={`fixed top-0 left-0 right-0 z-50  transition-colors duration-300 ${
+          isAtTop ? 'bg-transparent' : 'bg-primary/50 backdrop-blur-sm'
+        }`}
+        initial={{ y: 0 }}
+        animate={{ y: isVisible ? 0 : -100 }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
+      >
+        <div className="flex items-center justify-between px-8 lg:px-16 py-6 max-w-[1440px] mx-auto">
           <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
             <Image src={logo} alt="Logo" className="w-10 h-10" />
             <span className="text-white text-xl font-semibold">Izy Technology</span>
           </Link>
           
+          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             <a 
               href="#approche" 
               className="text-white hover:text-gray-300 transition-colors"
               onClick={(e) => {
                 e.preventDefault();
-                const element = document.getElementById('approche');
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                handleScrollTo('approche');
               }}
             >
               Notre Approche
@@ -31,10 +82,7 @@ export default function Navigation() {
               className="text-white hover:text-gray-300 transition-colors"
               onClick={(e) => {
                 e.preventDefault();
-                const element = document.getElementById('services');
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                handleScrollTo('services');
               }}
             >
               Services
@@ -44,10 +92,7 @@ export default function Navigation() {
               className="text-white hover:text-gray-300 transition-colors"
               onClick={(e) => {
                 e.preventDefault();
-                const element = document.getElementById('engagements');
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                handleScrollTo('engagements');
               }}
             >
               Engagements
@@ -57,10 +102,7 @@ export default function Navigation() {
               className="text-white hover:text-gray-300 transition-colors"
               onClick={(e) => {
                 e.preventDefault();
-                const element = document.getElementById('clients');
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                handleScrollTo('clients');
               }}
             >
               Client
@@ -72,7 +114,119 @@ export default function Navigation() {
               Contact →
             </Link>
           </div>
-        </nav>
+
+          {/* Mobile Burger Menu Button */}
+          <button
+            className="md:hidden text-white focus:outline-none relative z-[9999]"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
+          </button>
+        </div>
+      </motion.nav>
+
+      {/* Mobile Menu Overlay - Rendered outside nav for proper positioning */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              className="fixed inset-0 bg-black/50 z-[9999] md:hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsMobileMenuOpen(false)}
+            />
+            
+            {/* Mobile Menu */}
+            <motion.div
+              className="fixed top-0 right-0 h-screen w-80 bg-[#0F172A] shadow-xl z-[9999] md:hidden overflow-y-auto"
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'tween', duration: 0.3 }}
+            >
+              {/* Close Button */}
+              <button
+                className="absolute top-6 right-6 text-white focus:outline-none z-[10000] hover:opacity-80 transition-opacity"
+                onClick={() => setIsMobileMenuOpen(false)}
+                aria-label="Close menu"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+              
+              <div className="flex flex-col p-8 pt-20">
+                <a 
+                  href="#approche" 
+                  className="text-white hover:text-gray-300 transition-colors py-4 border-b border-white/10"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleScrollTo('approche');
+                  }}
+                >
+                  Notre Approche
+                </a>
+                <a 
+                  href="#services" 
+                  className="text-white hover:text-gray-300 transition-colors py-4 border-b border-white/10"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleScrollTo('services');
+                  }}
+                >
+                  Services
+                </a>
+                <a 
+                  href="#engagements" 
+                  className="text-white hover:text-gray-300 transition-colors py-4 border-b border-white/10"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleScrollTo('engagements');
+                  }}
+                >
+                  Engagements
+                </a>
+                <a 
+                  href="#clients" 
+                  className="text-white hover:text-gray-300 transition-colors py-4 border-b border-white/10"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleScrollTo('clients');
+                  }}
+                >
+                  Client
+                </a>
+                <Link 
+                  href="/privacy" 
+                  className="text-white hover:text-gray-300 transition-colors py-4 border-b border-white/10"
+                  onClick={handleLinkClick}
+                >
+                  Mentions légales
+                </Link>
+                <Link 
+                  href="/contact" 
+                  className="mt-4 px-6 py-3 bg-red-600 text-white font-medium hover:bg-red-700 transition-colors rounded flex items-center justify-center gap-2"
+                  onClick={handleLinkClick}
+                >
+                  Contact →
+                </Link>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 
