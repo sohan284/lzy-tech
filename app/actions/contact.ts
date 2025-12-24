@@ -1,10 +1,17 @@
 'use server';
 
-import { Resend } from 'resend';
+import * as nodemailer from 'nodemailer';
 
-// Replace 'YOUR_RESEND_API_KEY' with your actual Resend API key
-// Get your API key from: https://resend.com/api-keys
-const resend = new Resend('re_vBLqpLVo_GBdvcfi1mm6nRoooaDKE7EV3');
+// Gmail SMTP Configuration
+// Replace with your Gmail address and App Password
+// To get App Password: Google Account > Security > 2-Step Verification > App passwords
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'sr.sohan088@gmail.com', // Replace with your Gmail address
+    pass: 'oefb hwkp euma gasf' // Replace with your Gmail App Password
+  }
+});
 
 export type ContactFormState = {
   success: boolean;
@@ -98,9 +105,9 @@ export async function submitContactForm(
 
   // Send email
   try {
-    const { data, error } = await resend.emails.send({
-      from: 'IzyTechnology Contact <onboarding@resend.dev>', // You'll need to verify your domain with Resend
-      to: ['sr.sohan088@gmail.com'],
+    const mailOptions = {
+      from: 'IzyTechnology Contact <sr.sohan088@gmail.com>', // Replace with your Gmail address
+      to: 'sr.sohan088@gmail.com',
       subject: `Nouveau message de contact - ${prenom} de ${organisation}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
@@ -155,17 +162,10 @@ export async function submitContactForm(
           </div>
         </div>
       `,
-    });
+    };
 
-    if (error) {
-      console.error('Error sending email:', error);
-      return {
-        success: false,
-        message: 'Une erreur est survenue lors de l\'envoi. Veuillez réessayer plus tard.',
-      };
-    }
-
-    console.log('Email sent successfully:', data);
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Email sent successfully:', info.messageId);
   } catch (error) {
     console.error('Error sending email:', error);
     return {
