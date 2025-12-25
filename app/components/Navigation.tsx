@@ -80,16 +80,6 @@ export default function Navigation() {
             {showSectionLinks && (
               <>
                 <a
-                  href="#approche"
-                  className="text-white hover:text-gray-300 transition-colors"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleScrollTo("approche");
-                  }}
-                >
-                  Notre Approche
-                </a>
-                <a
                   href="#services"
                   className="text-white hover:text-gray-300 transition-colors"
                   onClick={(e) => {
@@ -98,6 +88,26 @@ export default function Navigation() {
                   }}
                 >
                   A propos
+                </a>
+                <a
+                  href="#cta"
+                  className="text-white hover:text-gray-300 transition-colors"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleScrollTo("cta");
+                  }}
+                >
+                  Vos secteurs
+                </a>
+                <a
+                  href="#approche"
+                  className="text-white hover:text-gray-300 transition-colors"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleScrollTo("approche");
+                  }}
+                >
+                  Notre Approche
                 </a>
                 <a
                   href="#engagements"
@@ -119,26 +129,12 @@ export default function Navigation() {
                 >
                   Notre impact
                 </a>
-                <a
-                  href="#clients"
+                <Link
+                  href="/privacy"
                   className="text-white hover:text-gray-300 transition-colors"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleScrollTo("clients");
-                  }}
                 >
-                  Nos Clients
-                </a>
-                <a
-                  href="#cta"
-                  className="text-white hover:text-gray-300 transition-colors"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleScrollTo("cta");
-                  }}
-                >
-                  Vos secteurs
-                </a>
+                  Mentions légales
+                </Link>
               </>
             )}
             {!showSectionLinks && (
@@ -149,12 +145,14 @@ export default function Navigation() {
                 Accueil
               </Link>
             )}
-            <Link
-              href="/privacy"
-              className="text-white hover:text-gray-300 transition-colors"
-            >
-              Mentions légales
-            </Link>
+            {!showSectionLinks && (
+              <Link
+                href="/privacy"
+                className="text-white hover:text-gray-300 transition-colors"
+              >
+                Mentions légales
+              </Link>
+            )}
             <Link
               href="/contact"
               className="px-6 py-2.5 bg-red-600 text-white font-medium hover:bg-red-700 transition-colors rounded flex items-center gap-2"
@@ -248,16 +246,6 @@ export default function Navigation() {
                 {showSectionLinks && (
                   <>
                     <a
-                      href="#approche"
-                      className="text-white hover:text-gray-300 transition-colors py-4 border-b border-white/10"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleScrollTo("approche");
-                      }}
-                    >
-                      Notre Approche
-                    </a>
-                    <a
                       href="#services"
                       className="text-white hover:text-gray-300 transition-colors py-4 border-b border-white/10"
                       onClick={(e) => {
@@ -266,6 +254,26 @@ export default function Navigation() {
                       }}
                     >
                       A propos
+                    </a>
+                    <a
+                      href="#cta"
+                      className="text-white hover:text-gray-300 transition-colors py-4 border-b border-white/10"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleScrollTo("cta");
+                      }}
+                    >
+                      Vos secteurs
+                    </a>
+                    <a
+                      href="#approche"
+                      className="text-white hover:text-gray-300 transition-colors py-4 border-b border-white/10"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleScrollTo("approche");
+                      }}
+                    >
+                      Notre Approche
                     </a>
                     <a
                       href="#engagements"
@@ -287,26 +295,13 @@ export default function Navigation() {
                     >
                       Notre impact
                     </a>
-                    <a
-                      href="#clients"
+                    <Link
+                      href="/privacy"
                       className="text-white hover:text-gray-300 transition-colors py-4 border-b border-white/10"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleScrollTo("clients");
-                      }}
+                      onClick={handleLinkClick}
                     >
-                      Nos Clients
-                    </a>
-                    <a
-                      href="#cta"
-                      className="text-white hover:text-gray-300 transition-colors py-4 border-b border-white/10"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleScrollTo("cta");
-                      }}
-                    >
-                      Vos secteurs
-                    </a>
+                      Mentions légales
+                    </Link>
                   </>
                 )}
                 {!showSectionLinks && (
@@ -318,14 +313,15 @@ export default function Navigation() {
                     Accueil
                   </Link>
                 )}
-                <Link
-                  href="/privacy"
-                  className="text-white hover:text-gray-300 transition-colors py-4 border-b border-white/10"
-                  onClick={handleLinkClick}
-                >
-                  Mentions légales
-                </Link>
-
+                {!showSectionLinks && (
+                  <Link
+                    href="/privacy"
+                    className="text-white hover:text-gray-300 transition-colors py-4 border-b border-white/10"
+                    onClick={handleLinkClick}
+                  >
+                    Mentions légales
+                  </Link>
+                )}
                 <Link
                   href="/contact"
                   className="mt-4 px-6 py-3 bg-red-600 text-white font-medium hover:bg-red-700 transition-colors rounded flex items-center justify-center gap-2"
