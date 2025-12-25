@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import backgroundImage from "@/public/assets/cta.jpg";
-import whiteLogo from "@/public/assets/whiteLogo.png";
+import LogoWatermark from "./LogoWatermark";
 
 export default function CTASection() {
   const ref = useRef(null);
@@ -34,15 +34,7 @@ export default function CTASection() {
           transition={{ duration: 1, ease: "easeOut" }}
         >
           {/* Logo Watermark */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <Image
-              src={whiteLogo}
-              alt="IzyTechnology Logo"
-              width={400}
-              height={300}
-              className="opacity-10 w-[400px] h-[300px] object-contain"
-            />
-          </div>
+          <LogoWatermark opacity={20} />
         </motion.div>
         {/* <motion.div
           initial={{ x: -100, opacity: 0 }}

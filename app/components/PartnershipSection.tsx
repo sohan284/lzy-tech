@@ -25,7 +25,7 @@ export default function PartnershipSection() {
             <br />
             un partenaire de vérité.
           </h2>
-          <p className="section-text text-gray-600 italic max-w-2xl mx-auto">
+          <p className="section-text font-bold text-gray-600 italic max-w-2xl mx-auto">
             &quot;Notre croissance repose sur une règle d&apos;or : nous ne
             vendons pas du temps, nous vendons de l&apos;impact.&quot;
           </p>
@@ -116,7 +116,7 @@ export default function PartnershipSection() {
                 <h3 className="text-2xl font-bold text-primary mb-2">
                   L&apos;Honnêteté Radicale
                 </h3>
-                <p className="text-sm font-semibold text-gray-800 mb-3">
+                <p className="text-base md:text-lg lg:text-xl font-semibold text-gray-800 mb-3">
                   Nous savons dire NON.
                 </p>
                 <p className="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
@@ -151,7 +151,7 @@ export default function PartnershipSection() {
                 <h3 className="text-2xl font-bold text-primary mb-2">
                   L&apos;Obsession du Concret
                 </h3>
-                <p className="text-sm font-semibold text-gray-800 mb-3">
+                <p className="text-base md:text-xl lg:text-xl font-semibold text-gray-800 mb-3">
                   Au-delà des slides.
                 </p>
                 <p className="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
@@ -186,7 +186,7 @@ export default function PartnershipSection() {
                 <h3 className="text-2xl font-bold text-primary mb-2">
                   L&apos;Adaptation Terrain
                 </h3>
-                <p className="text-sm font-semibold text-gray-800 mb-3">
+                <p className="text-base md:text-lg lg:text-xl font-semibold text-gray-800 mb-3">
                   La réalité dicte la méthode.
                 </p>
                 <p className="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">

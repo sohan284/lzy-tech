@@ -238,7 +238,7 @@ export default function ServicesSection() {
     },
     {
       icon: <DatabaseOptimizationIcon />,
-      title: "Optimisation bases de données",
+      title: "Optimisation de bases de données",
       description:
         "Faites de vos données un capital exploitable, pas un coût technique. Nous structurons et outillons l'exploitation de vos bases pour transformer vos données en leviers de pilotage et d'aide à la décision.",
       backgroundImage: "/assets/service4.jpg",

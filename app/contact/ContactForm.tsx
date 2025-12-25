@@ -210,7 +210,7 @@ function SubmitButton() {
       disabled={pending}
       className="w-full px-8 py-4 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed hover:opacity-90 cursor-pointer"
     >
-      {pending ? "Envoi en cours..." : "envoyer"}
+      {pending ? "Envoi en cours..." : "Envoyer"}
       <svg
         className="w-5 h-5"
         fill="none"

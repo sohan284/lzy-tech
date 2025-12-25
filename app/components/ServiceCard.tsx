@@ -3,7 +3,7 @@
 import { ReactNode } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import logo from "@/public/assets/whiteLogo.png";
+import LogoWatermark from "./LogoWatermark";
 
 interface ServiceCardProps {
   icon: ReactNode;
@@ -51,17 +51,7 @@ export default function ServiceCard({
       )}
 
       {/* Logo Watermark - Only for download card */}
-      {isDownloadCard && (
-        <div className="absolute inset-0 opacity-10 z-0 flex items-center justify-center pointer-events-none">
-          <Image
-            src={logo}
-            alt="Logo watermark"
-            className="w-64 h-64 object-contain"
-            width={256}
-            height={256}
-          />
-        </div>
-      )}
+      {isDownloadCard && <LogoWatermark opacity={10} />}
 
       {/* Content */}
       <div className="relative z-10">
@@ -117,7 +107,7 @@ export default function ServiceCard({
               document.body.removeChild(link);
             }}
           >
-            téléchargement →
+            Téléchargement →
           </motion.button>
         )}
       </div>
