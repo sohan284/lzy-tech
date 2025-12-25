@@ -5,7 +5,7 @@ import backgroundImage from '@/public/assets/whiteLogo.png';
   export default function Footer() {
   return (
     <footer className="bg-[#0033a0] text-white py-12 px-8 lg:px-16 relative overflow-hidden">
-      <Image src={logo} alt="Logo" className="absolute  opacity-10 left-[45vw]  w-[250px] h-[200px]" />
+      <Image src={logo} alt="Logo" className="absolute  opacity-10 left-[35vw]  w-[400px] h-[300px] -mt-12" />
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
           {/* Left - Logo and Tagline */}
@@ -16,7 +16,7 @@ import backgroundImage from '@/public/assets/whiteLogo.png';
               </div>
               <span className="text-2xl font-bold">IzyTechnology</span>
             </Link>
-            <p className="text-xs  text-right font-mono -mt-1">simplement efficace</p>
+            {/* <p className="text-xs  text-right font-mono -mt-1">simplement efficace</p> */}
           </div>
 
           {/* Right - Contact Info */}
