@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import backgroundImage from "@/public/assets/cta.jpg";
+import whiteLogo from "@/public/assets/whiteLogo.png";
 
 export default function CTASection() {
   const ref = useRef(null);
@@ -27,11 +28,22 @@ export default function CTASection() {
         <div className="absolute inset-0 bg-[#002FA7] opacity-50"></div>
         {/* Responsive blue overlay shape */}
         <motion.div
-          className="absolute hidden lg:block w-[85vw] md:w-[75vw] lg:w-[70vw] h-full -left-20 md:-left-32 lg:-left-40 bg-primary/90 z-20 rounded-br-[60%] md:rounded-br-[70%] lg:rounded-br-[80%]"
+          className="absolute hidden lg:block w-[85vw] md:w-[75vw] lg:w-[70vw] h-full -left-20 md:-left-32 lg:-left-40 bg-primary/90 z-20 rounded-br-[60%] md:rounded-br-[70%] lg:rounded-br-[80%] overflow-hidden"
           initial={{ x: -200 }}
           animate={isInView ? { x: 0 } : {}}
           transition={{ duration: 1, ease: "easeOut" }}
-        />
+        >
+          {/* Logo Watermark */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <Image
+              src={whiteLogo}
+              alt="IzyTechnology Logo"
+              width={400}
+              height={300}
+              className="opacity-10 w-[400px] h-[300px] object-contain"
+            />
+          </div>
+        </motion.div>
         {/* <motion.div
           initial={{ x: -100, opacity: 0 }}
           animate={isInView ? { x: 0, opacity: 1 } : {}}
