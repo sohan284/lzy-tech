@@ -13,7 +13,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
           {/* Left - Logo and Tagline */}
-          <div className="flex-shrink-0">
+          <div className="shrink-0">
             <Link
               href="/"
               className="flex items-center flex-col gap-2 hover:opacity-80 transition-opacity"
@@ -47,12 +47,14 @@ export default function Footer() {
           <p className="text-white/80">
             © 2025 IzyTechnology. Tous droits réservés.
           </p>
-          <Link
-            href="/privacy"
-            className="text-white/80 hover:text-white transition-colors underline"
-          >
-            Mentions légales et Données personnelles
-          </Link>
+          <div className="flex flex-wrap items-center gap-4 justify-center lg:justify-end">
+            <Link
+              href="/privacy"
+              className="text-white/80 hover:text-white transition-colors underline"
+            >
+              Mentions légales et Données personnelles
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

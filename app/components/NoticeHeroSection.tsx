@@ -6,7 +6,13 @@ import backgroundImage from "@/public/assets/noticeHero.png";
 import Navigation from "./Navigation";
 import LogoWatermark from "./LogoWatermark";
 
-export default function NoticeHeroSection() {
+interface NoticeHeroSectionProps {
+  title?: string;
+}
+
+export default function NoticeHeroSection({
+  title = "Mentions Légales",
+}: NoticeHeroSectionProps) {
   return (
     <section className="relative min-h-[50vh] overflow-hidden">
       {/* Background Image Container */}
@@ -81,7 +87,7 @@ export default function NoticeHeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            Mentions Légales
+            {title}
           </motion.h1>
         </div>
       </div>

@@ -325,6 +325,7 @@ export default function Navigation() {
                 >
                   Mentions légales
                 </Link>
+
                 <Link
                   href="/contact"
                   className="mt-4 px-6 py-3 bg-red-600 text-white font-medium hover:bg-red-700 transition-colors rounded flex items-center justify-center gap-2"
