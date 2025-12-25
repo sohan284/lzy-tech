@@ -1,16 +1,16 @@
-'use server';
+"use server";
 
-import * as nodemailer from 'nodemailer';
+import * as nodemailer from "nodemailer";
 
 // Gmail SMTP Configuration
 // Replace with your Gmail address and App Password
 // To get App Password: Google Account > Security > 2-Step Verification > App passwords
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: "gmail",
   auth: {
-    user: 'sr.sohan088@gmail.com', // Replace with your Gmail address
-    pass: 'oefb hwkp euma gasf' // Replace with your Gmail App Password
-  }
+    user: "sr.sohan088@gmail.com", // Replace with your Gmail address
+    pass: "oefb hwkp euma gasf", // Replace with your Gmail App Password
+  },
 });
 
 export type ContactFormState = {
@@ -18,7 +18,7 @@ export type ContactFormState = {
   message: string;
   errors?: {
     prenom?: string;
-    fonction?: string;
+    nom?: string;
     organisation?: string;
     pays?: string;
     email?: string;
@@ -30,84 +30,84 @@ export type ContactFormState = {
 
 // Map priority values to readable text
 const priorityLabels: Record<string, string> = {
-  'fiabiliser-donnees': 'Fiabiliser nos données',
-  'securiser-revenus': 'Sécuriser nos revenus',
-  'optimiser-processus': 'Optimiser nos processus',
-  'mieux-travailler': 'Mieux travailler (Outils & applications métier)',
-  'autre': 'Autre'
+  "fiabiliser-donnees": "Fiabiliser nos données",
+  "securiser-revenus": "Sécuriser nos revenus",
+  "optimiser-processus": "Optimiser nos processus",
+  "mieux-travailler": "Mieux travailler (Outils & applications métier)",
+  autre: "Autre",
 };
 
 export async function submitContactForm(
   prevState: ContactFormState | null,
   formData: FormData
 ): Promise<ContactFormState> {
-  const prenom = formData.get('prenom') as string;
-  const fonction = formData.get('fonction') as string;
-  const organisation = formData.get('organisation') as string;
-  const pays = formData.get('pays') as string;
-  const email = formData.get('email') as string;
-  const telephone = formData.get('telephone') as string;
-  const priorities = formData.getAll('priorities') as string[];
-  const autre = formData.get('autre') as string;
-  const message = formData.get('message') as string;
+  const prenom = formData.get("prenom") as string;
+  const nom = formData.get("nom") as string;
+  const organisation = formData.get("organisation") as string;
+  const pays = formData.get("pays") as string;
+  const email = formData.get("email") as string;
+  const telephone = formData.get("telephone") as string;
+  const priorities = formData.getAll("priorities") as string[];
+  const autre = formData.get("autre") as string;
+  const message = formData.get("message") as string;
 
   // Basic validation
-  const errors: ContactFormState['errors'] = {};
+  const errors: ContactFormState["errors"] = {};
 
   if (!prenom || prenom.trim().length === 0) {
-    errors.prenom = 'Le prénom est requis';
+    errors.prenom = "Le prénom est requis";
   }
 
-  if (!fonction || fonction.trim().length === 0) {
-    errors.fonction = 'La fonction est requise';
+  if (!nom || nom.trim().length === 0) {
+    errors.nom = "Le nom de famille est requis";
   }
 
   if (!organisation || organisation.trim().length === 0) {
-    errors.organisation = 'L\'organisation est requise';
+    errors.organisation = "L'organisation est requise";
   }
 
   if (!pays || pays.trim().length === 0) {
-    errors.pays = 'Le pays est requis';
+    errors.pays = "Le pays est requis";
   }
 
   if (!email || email.trim().length === 0) {
-    errors.email = 'L\'email est requis';
+    errors.email = "L'email est requis";
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    errors.email = 'Veuillez entrer une adresse email valide';
+    errors.email = "Veuillez entrer une adresse email valide";
   }
 
   if (!telephone || telephone.trim().length === 0) {
-    errors.telephone = 'Le téléphone est requis';
+    errors.telephone = "Le téléphone est requis";
   }
 
   if (priorities.length === 0) {
-    errors.priorities = 'Veuillez sélectionner au moins une priorité';
+    errors.priorities = "Veuillez sélectionner au moins une priorité";
   }
 
   if (!message || message.trim().length === 0) {
-    errors.message = 'Le message est requis';
+    errors.message = "Le message est requis";
   }
 
   if (Object.keys(errors).length > 0) {
     return {
       success: false,
-      message: 'Veuillez corriger les erreurs ci-dessous',
+      message: "Veuillez corriger les erreurs ci-dessous",
       errors,
     };
   }
 
   // Format priorities for email
   const prioritiesText = priorities
-    .map(p => priorityLabels[p] || p)
-    .join(', ');
-  
-  const autreText = priorities.includes('autre') && autre ? ` (${autre})` : '';
+    .map((p) => priorityLabels[p] || p)
+    .join(", ");
+
+  const autreText = priorities.includes("autre") && autre ? ` (${autre})` : "";
 
   // Send email
   try {
     const mailOptions = {
-      from: 'IzyTechnology Contact <sr.sohan088@gmail.com>', // Replace with your Gmail address
-      to: 'sr.sohan088@gmail.com',
+      from: "IzyTechnology Contact <sr.sohan088@gmail.com>", // Replace with your Gmail address
+      to: "sr.sohan088@gmail.com",
       subject: `Nouveau message de contact - ${prenom} de ${organisation}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
@@ -123,8 +123,8 @@ export async function submitContactForm(
                 <td style="padding: 8px 0; color: #333;">${prenom}</td>
               </tr>
               <tr>
-                <td style="padding: 8px 0; font-weight: bold; color: #666;">Fonction:</td>
-                <td style="padding: 8px 0; color: #333;">${fonction}</td>
+                <td style="padding: 8px 0; font-weight: bold; color: #666;">Nom de famille:</td>
+                <td style="padding: 8px 0; color: #333;">${nom}</td>
               </tr>
               <tr>
                 <td style="padding: 8px 0; font-weight: bold; color: #666;">Organisation:</td>
@@ -165,18 +165,18 @@ export async function submitContactForm(
     };
 
     const info = await transporter.sendMail(mailOptions);
-    console.log('Email sent successfully:', info.messageId);
+    console.log("Email sent successfully:", info.messageId);
   } catch (error) {
-    console.error('Error sending email:', error);
+    console.error("Error sending email:", error);
     return {
       success: false,
-      message: 'Une erreur est survenue lors de l\'envoi. Veuillez réessayer plus tard.',
+      message:
+        "Une erreur est survenue lors de l'envoi. Veuillez réessayer plus tard.",
     };
   }
 
   return {
     success: true,
-    message: 'Merci pour votre message ! Nous vous répondrons bientôt.',
+    message: "Merci pour votre message ! Nous vous répondrons bientôt.",
   };
 }
-

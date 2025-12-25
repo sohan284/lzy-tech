@@ -100,14 +100,14 @@ export default function ServiceCard({
             className="mt-6 px-6 py-3 bg-white text-primary font-semibold rounded border-2 border-white hover:bg-transparent hover:text-white transition-all duration-300 relative z-20 hover:opacity-90 cursor-pointer"
             onClick={() => {
               const link = document.createElement("a");
-              link.href = "/assets/lyzTech.pdf";
-              link.download = "lyzTech.pdf";
+              link.href = "/assets/Plaquette IzyTechnology.pdf";
+              link.download = "Plaquette IzyTechnology.pdf";
               document.body.appendChild(link);
               link.click();
               document.body.removeChild(link);
             }}
           >
-            Téléchargement →
+            Téléchargez maintenant →
           </motion.button>
         )}
       </div>

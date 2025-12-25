@@ -97,7 +97,7 @@ export default function Navigation() {
                     handleScrollTo("services");
                   }}
                 >
-                  Services
+                  A propos
                 </a>
                 <a
                   href="#engagements"
@@ -107,7 +107,17 @@ export default function Navigation() {
                     handleScrollTo("engagements");
                   }}
                 >
-                  Engagements
+                  Nos services
+                </a>
+                <a
+                  href="#impact"
+                  className="text-white hover:text-gray-300 transition-colors"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleScrollTo("impact");
+                  }}
+                >
+                  Notre impact
                 </a>
                 <a
                   href="#clients"
@@ -117,7 +127,17 @@ export default function Navigation() {
                     handleScrollTo("clients");
                   }}
                 >
-                  Clients
+                  Nos Clients
+                </a>
+                <a
+                  href="#cta"
+                  className="text-white hover:text-gray-300 transition-colors"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleScrollTo("cta");
+                  }}
+                >
+                  CTA
                 </a>
               </>
             )}
@@ -245,7 +265,7 @@ export default function Navigation() {
                         handleScrollTo("services");
                       }}
                     >
-                      Services
+                      A propos
                     </a>
                     <a
                       href="#engagements"
@@ -255,7 +275,17 @@ export default function Navigation() {
                         handleScrollTo("engagements");
                       }}
                     >
-                      Engagements
+                      Nos services
+                    </a>
+                    <a
+                      href="#impact"
+                      className="text-white hover:text-gray-300 transition-colors py-4 border-b border-white/10"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleScrollTo("impact");
+                      }}
+                    >
+                      Notre impact
                     </a>
                     <a
                       href="#clients"
@@ -265,7 +295,17 @@ export default function Navigation() {
                         handleScrollTo("clients");
                       }}
                     >
-                      Clients
+                      Nos Clients
+                    </a>
+                    <a
+                      href="#cta"
+                      className="text-white hover:text-gray-300 transition-colors py-4 border-b border-white/10"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleScrollTo("cta");
+                      }}
+                    >
+                      CTA
                     </a>
                   </>
                 )}

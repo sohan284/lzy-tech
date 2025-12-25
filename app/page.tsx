@@ -11,21 +11,27 @@ export default function Home() {
   return (
     <div className="min-h-screen overflow-x-hidden">
       <HeroSection />
-      <section id="approche" className="scroll-mt-20">
+      <section id="services" className="scroll-mt-20">
         <AboutSection />
       </section>
-      <FeaturesSection />
-      <section id="services" className="scroll-mt-20">
-        <ServicesSection />
+      <section id="impact" className="scroll-mt-20">
+        <FeaturesSection />
       </section>
       <section id="engagements" className="scroll-mt-20">
+        <ServicesSection />
+      </section>
+      <section id="approche" className="scroll-mt-20">
         <PartnershipSection />
       </section>
-      <section id="clients" className="scroll-mt-20">
+      <section id="cta" className="scroll-mt-20">
         <ClientsSection />
       </section>
-      <CTASection />
+      <section className="scroll-mt-20">
+        <CTASection />
+      </section>
+      <section id="clients" className="scroll-mt-20">
       <TrustSection />
+      </section>
     </div>
   );
 }

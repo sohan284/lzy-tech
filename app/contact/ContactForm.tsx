@@ -7,6 +7,200 @@ import Image from "next/image";
 import { type ContactFormState } from "../actions/contact";
 import contactImage from "@/public/assets/contactImage.jpg";
 
+// Country code to phone code mapping
+const countryPhoneCodes: { [key: string]: string } = {
+  AF: "+93",
+  ZA: "+27",
+  AL: "+355",
+  DZ: "+213",
+  DE: "+49",
+  AD: "+376",
+  AO: "+244",
+  AG: "+1",
+  SA: "+966",
+  AR: "+54",
+  AM: "+374",
+  AU: "+61",
+  AT: "+43",
+  AZ: "+994",
+  BS: "+1",
+  BH: "+973",
+  BD: "+880",
+  BB: "+1",
+  BE: "+32",
+  BZ: "+501",
+  BJ: "+229",
+  BT: "+975",
+  BY: "+375",
+  MM: "+95",
+  BO: "+591",
+  BA: "+387",
+  BW: "+267",
+  BR: "+55",
+  BN: "+673",
+  BG: "+359",
+  BF: "+226",
+  BI: "+257",
+  KH: "+855",
+  CM: "+237",
+  CA: "+1",
+  CV: "+238",
+  CL: "+56",
+  CN: "+86",
+  CY: "+357",
+  CO: "+57",
+  KM: "+269",
+  CG: "+242",
+  CD: "+243",
+  KP: "+850",
+  KR: "+82",
+  CR: "+506",
+  CI: "+225",
+  HR: "+385",
+  CU: "+53",
+  DK: "+45",
+  DJ: "+253",
+  DM: "+1",
+  EG: "+20",
+  AE: "+971",
+  EC: "+593",
+  ER: "+291",
+  ES: "+34",
+  EE: "+372",
+  SZ: "+268",
+  US: "+1",
+  ET: "+251",
+  FJ: "+679",
+  FI: "+358",
+  FR: "+33",
+  GA: "+241",
+  GM: "+220",
+  GE: "+995",
+  GH: "+233",
+  GR: "+30",
+  GD: "+1",
+  GT: "+502",
+  GN: "+224",
+  GW: "+245",
+  GQ: "+240",
+  GY: "+592",
+  HT: "+509",
+  HN: "+504",
+  HU: "+36",
+  IN: "+91",
+  ID: "+62",
+  IQ: "+964",
+  IR: "+98",
+  IE: "+353",
+  IS: "+354",
+  IL: "+972",
+  IT: "+39",
+  JM: "+1",
+  JP: "+81",
+  JO: "+962",
+  KZ: "+7",
+  KE: "+254",
+  KG: "+996",
+  KI: "+686",
+  KW: "+965",
+  LA: "+856",
+  LS: "+266",
+  LV: "+371",
+  LB: "+961",
+  LR: "+231",
+  LY: "+218",
+  LI: "+423",
+  LT: "+370",
+  LU: "+352",
+  MK: "+389",
+  MG: "+261",
+  MY: "+60",
+  MW: "+265",
+  MV: "+960",
+  ML: "+223",
+  MT: "+356",
+  MA: "+212",
+  MU: "+230",
+  MR: "+222",
+  MX: "+52",
+  FM: "+691",
+  MD: "+373",
+  MC: "+377",
+  MN: "+976",
+  ME: "+382",
+  MZ: "+258",
+  NA: "+264",
+  NR: "+674",
+  NP: "+977",
+  NI: "+505",
+  NE: "+227",
+  NG: "+234",
+  NO: "+47",
+  NZ: "+64",
+  OM: "+968",
+  UG: "+256",
+  UZ: "+998",
+  PK: "+92",
+  PW: "+680",
+  PA: "+507",
+  PG: "+675",
+  PY: "+860",
+  NL: "+31",
+  PE: "+51",
+  PH: "+63",
+  PL: "+48",
+  PT: "+351",
+  QA: "+974",
+  RO: "+40",
+  GB: "+44",
+  RU: "+7",
+  RW: "+250",
+  KN: "+1",
+  LC: "+1",
+  VC: "+1",
+  SB: "+677",
+  SV: "+503",
+  WS: "+685",
+  ST: "+239",
+  SN: "+221",
+  RS: "+381",
+  SC: "+248",
+  SL: "+232",
+  SG: "+65",
+  SK: "+421",
+  SI: "+386",
+  SO: "+252",
+  SD: "+249",
+  SS: "+211",
+  LK: "+94",
+  SE: "+46",
+  CH: "+41",
+  SR: "+597",
+  SY: "+963",
+  TJ: "+992",
+  TZ: "+255",
+  TD: "+235",
+  CZ: "+420",
+  TH: "+66",
+  TL: "+670",
+  TG: "+228",
+  TO: "+676",
+  TT: "+1",
+  TN: "+216",
+  TM: "+993",
+  TR: "+90",
+  TV: "+688",
+  UA: "+380",
+  UY: "+598",
+  VU: "+678",
+  VA: "+39",
+  VE: "+58",
+  VN: "+84",
+  YE: "+967",
+  ZM: "+260",
+  ZW: "+263",
+};
+
 // Comprehensive list of countries
 const countries = [
   { code: "AF", name: "Afghanistan" },
@@ -250,20 +444,65 @@ export default function ContactForm({
   } | null>(null);
   const countryDropdownRef = useRef<HTMLDivElement>(null);
 
+  // Phone number state - split into country code and number
+  const [selectedPhoneCode, setSelectedPhoneCode] = useState<string>("+33");
+  const [phoneNumber, setPhoneNumber] = useState("");
+
+  // Country code dropdown state
+  const [isPhoneCodeOpen, setIsPhoneCodeOpen] = useState(false);
+  const [phoneCodeSearchQuery, setPhoneCodeSearchQuery] = useState("");
+  const phoneCodeDropdownRef = useRef<HTMLDivElement>(null);
+
+  // Create list of country codes with country names for phone code dropdown
+  const countryCodesList = countries
+    .map((country) => ({
+      code: country.code,
+      name: country.name,
+      phoneCode: countryPhoneCodes[country.code] || "",
+    }))
+    .filter((item) => item.phoneCode) // Only include countries with phone codes
+    .sort((a, b) => {
+      // Sort by phone code
+      return a.phoneCode.localeCompare(b.phoneCode);
+    });
+
+  // Filter country codes based on search
+  const filteredCountryCodes = countryCodesList.filter(
+    (item) =>
+      item.name.toLowerCase().includes(phoneCodeSearchQuery.toLowerCase()) ||
+      item.phoneCode.includes(phoneCodeSearchQuery)
+  );
+
   // Filter countries based on search
   const filteredCountries = countries.filter((country) =>
     country.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // Close dropdown when clicking outside
+  // Close dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        countryDropdownRef.current &&
-        !countryDropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsCountryOpen(false);
-        setSearchQuery("");
+      const target = event.target as Node;
+
+      // Close country dropdown if open and click is outside
+      if (isCountryOpen) {
+        if (
+          countryDropdownRef.current &&
+          !countryDropdownRef.current.contains(target)
+        ) {
+          setIsCountryOpen(false);
+          setSearchQuery("");
+        }
+      }
+
+      // Close phone code dropdown if open and click is outside
+      if (isPhoneCodeOpen) {
+        if (
+          phoneCodeDropdownRef.current &&
+          !phoneCodeDropdownRef.current.contains(target)
+        ) {
+          setIsPhoneCodeOpen(false);
+          setPhoneCodeSearchQuery("");
+        }
       }
     };
 
@@ -271,7 +510,7 @@ export default function ContactForm({
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [isCountryOpen, isPhoneCodeOpen]);
 
   return (
     <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 max-w-[1440px] mx-auto">
@@ -311,22 +550,22 @@ export default function ContactForm({
 
               <div>
                 <label
-                  htmlFor="fonction"
+                  htmlFor="nom"
                   className="block text-sm font-medium text-gray-700 mb-2"
                 >
-                  Fonction<span className="text-red-600">*</span>
+                  Nom de famille<span className="text-red-600">*</span>
                 </label>
                 <input
                   type="text"
-                  id="fonction"
-                  name="fonction"
+                  id="nom"
+                  name="nom"
                   required
                   className="w-full text-black px-4 py-3 bg-[#F6F2E7] border border-[#F6F2E7] rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors"
                   placeholder=""
                 />
-                {state?.errors?.fonction && (
+                {state?.errors?.nom && (
                   <p className="mt-1 text-sm text-red-600">
-                    {state.errors.fonction}
+                    {state.errors.nom}
                   </p>
                 )}
               </div>
@@ -423,6 +662,12 @@ export default function ContactForm({
                                 setSelectedCountry(country);
                                 setIsCountryOpen(false);
                                 setSearchQuery("");
+                                // Auto-fill phone code dropdown with country code
+                                const phoneCode =
+                                  countryPhoneCodes[country.code] || "";
+                                if (phoneCode) {
+                                  setSelectedPhoneCode(phoneCode);
+                                }
                               }}
                               className={`w-full text-left px-4 py-2 hover:bg-[#F6F2E7] transition-colors ${
                                 selectedCountry?.code === country.code
@@ -478,13 +723,110 @@ export default function ContactForm({
                 >
                   Téléphone<span className="text-red-600">*</span>
                 </label>
+                <div className="flex gap-2 w-full">
+                  {/* Country Code Dropdown */}
+                  <div className="relative shrink-0" ref={phoneCodeDropdownRef}>
+                    <input
+                      type="hidden"
+                      name="phoneCode"
+                      value={selectedPhoneCode}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setIsPhoneCodeOpen(!isPhoneCodeOpen)}
+                      className="w-[70px] text-left text-black px-3 py-[14px] bg-[#F6F2E7] border border-[#F6F2E7] rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors flex items-center justify-between"
+                    >
+                      <span className="text-sm font-medium">
+                        {selectedPhoneCode}
+                      </span>
+                      <svg
+                        className={`w-4 h-4 transition-transform ${
+                          isPhoneCodeOpen ? "rotate-180" : ""
+                        }`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+                    {/* Country Code Dropdown menu */}
+                    {isPhoneCodeOpen && (
+                      <div className="absolute z-50 w-[280px] mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-hidden">
+                        {/* Search input */}
+                        <div className="p-2 border-b border-gray-200">
+                          <input
+                            type="text"
+                            placeholder="Rechercher un code..."
+                            value={phoneCodeSearchQuery}
+                            onChange={(e) =>
+                              setPhoneCodeSearchQuery(e.target.value)
+                            }
+                            className="w-full text-black px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none"
+                            autoFocus
+                          />
+                        </div>
+                        {/* Country code list */}
+                        <div className="max-h-48 overflow-y-auto">
+                          {filteredCountryCodes.length > 0 ? (
+                            filteredCountryCodes.map((item) => (
+                              <button
+                                key={`${item.code}-${item.phoneCode}`}
+                                type="button"
+                                onClick={() => {
+                                  setSelectedPhoneCode(item.phoneCode);
+                                  setIsPhoneCodeOpen(false);
+                                  setPhoneCodeSearchQuery("");
+                                }}
+                                className={`w-full text-left px-4 py-2 hover:bg-[#F6F2E7] transition-colors ${
+                                  selectedPhoneCode === item.phoneCode
+                                    ? "bg-primary/10 text-primary font-medium"
+                                    : "text-gray-700"
+                                }`}
+                              >
+                                <span className="font-medium">
+                                  {item.phoneCode}
+                                </span>{" "}
+                                <span className="text-gray-500 text-sm">
+                                  {item.name}
+                                </span>
+                              </button>
+                            ))
+                          ) : (
+                            <div className="px-4 py-2 text-gray-500 text-sm">
+                              Aucun code trouvé
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Phone Number Input */}
+                  <input
+                    type="tel"
+                    id="telephone"
+                    value={phoneNumber}
+                    onChange={(e) => {
+                      // Only allow numbers, spaces, and dashes
+                      const value = e.target.value.replace(/[^\d\s-]/g, "");
+                      setPhoneNumber(value);
+                    }}
+                    className="flex-1 text-black px-4 py-3 bg-[#F6F2E7] border border-[#F6F2E7] rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors w-[80%]"
+                    placeholder="123456789"
+                  />
+                </div>
+                {/* Hidden input for form submission with full phone number (country code + number) */}
                 <input
-                  type="tel"
-                  id="telephone"
+                  type="hidden"
                   name="telephone"
+                  value={`${selectedPhoneCode} ${phoneNumber}`.trim()}
                   required
-                  className="w-full text-black px-4 py-3 bg-[#F6F2E7] border border-[#F6F2E7] rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors"
-                  placeholder=""
                 />
                 {state?.errors?.telephone && (
                   <p className="mt-1 text-sm text-red-600">
