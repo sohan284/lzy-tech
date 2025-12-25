@@ -41,7 +41,7 @@ export default function AboutSection() {
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
             Nous opérons depuis Abidjan, au plus près des réalités de nos
-            clients africains et internationaux.
+            clients.
           </motion.p>
 
           {/* Second Paragraph */}

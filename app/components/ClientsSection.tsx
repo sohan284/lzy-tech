@@ -39,8 +39,8 @@ export default function ClientsSection() {
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
             onClick={() => {
               const link = document.createElement("a");
-              link.href = "/assets/lyzTech.pdf";
-              link.download = "lyzTech.pdf";
+              link.href = "/assets/Plaquette IzyTechnology.pdf";
+              link.download = "Plaquette IzyTechnology.pdf";
               document.body.appendChild(link);
               link.click();
               document.body.removeChild(link);

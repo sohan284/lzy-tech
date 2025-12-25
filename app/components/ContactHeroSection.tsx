@@ -4,8 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import backgroundImage from "@/public/assets/contactHero.jpg";
 import Navigation from "./Navigation";
-import logo from "@/public/assets/whiteLogo.png";
-import bgShape from "@/public/assets/bgShape.png";
+import LogoWatermark from "./LogoWatermark";
 
 export default function ContactHeroSection() {
   return (
@@ -65,17 +64,13 @@ export default function ContactHeroSection() {
 
       {/* Navigation */}
       <Navigation />
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 0.1, scale: 1 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
-      >
-        <Image
-          src={logo}
-          alt="Logo"
-          className="absolute opacity-60 left-[20%] top-[10%] w-[25vw] h-[25vw]"
-        />
-      </motion.div>
+      <LogoWatermark
+        opacity={30}
+        position="custom"
+        containerClassName="left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+        animated={true}
+        initialOpacity={0}
+      />
       <motion.div
         initial={{ x: -100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}

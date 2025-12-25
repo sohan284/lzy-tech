@@ -2,11 +2,17 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import backgroundImage from "@/public/assets/noticeHero.jpg";
+import backgroundImage from "@/public/assets/noticeHero.png";
 import Navigation from "./Navigation";
-import logo from "@/public/assets/whiteLogo.png";
+import LogoWatermark from "./LogoWatermark";
 
-export default function NoticeHeroSection() {
+interface NoticeHeroSectionProps {
+  title?: string;
+}
+
+export default function NoticeHeroSection({
+  title = "Mentions Légales",
+}: NoticeHeroSectionProps) {
   return (
     <section className="relative min-h-[50vh] overflow-hidden">
       {/* Background Image Container */}
@@ -64,17 +70,13 @@ export default function NoticeHeroSection() {
 
       {/* Navigation */}
       <Navigation />
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 0.1, scale: 1 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
-      >
-        <Image
-          src={logo}
-          alt="Logo"
-          className="absolute opacity-60 left-[20%] top-[10%] w-[25vw] h-[25vw]"
-        />
-      </motion.div>
+      <LogoWatermark
+        opacity={30}
+        position="custom"
+        containerClassName="left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+        animated={true}
+        initialOpacity={0}
+      />
 
       {/* Hero Content */}
       <div className="relative z-10 px-8 lg:px-16 pt-20 pb-16 max-w-[1440px] mx-auto">
@@ -85,7 +87,7 @@ export default function NoticeHeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            Mentions Légales
+            {title}
           </motion.h1>
         </div>
       </div>

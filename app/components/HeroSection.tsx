@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import backgroundImage from "@/public/assets/hero.jpg";
 import Navigation from "./Navigation";
-import logo from "@/public/assets/whiteLogo.png";
+import LogoWatermark from "./LogoWatermark";
 
 export default function HeroSection() {
   return (
@@ -65,17 +65,13 @@ export default function HeroSection() {
 
       {/* Navigation */}
       <Navigation />
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 0.1, scale: 1 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
-      >
-        <Image
-          src={logo}
-          alt="Logo"
-          className="absolute opacity-60 left-[20%] top-[10%] w-[25vw] h-[25vw]"
-        />
-      </motion.div>
+      <LogoWatermark
+        opacity={30}
+        position="custom"
+        containerClassName="left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+        animated={true}
+        initialOpacity={0}
+      />
       <motion.div
         initial={{ x: -100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
@@ -135,7 +131,7 @@ export default function HeroSection() {
           >
             <Link href="/contact">
               <motion.button className="inline-flex items-center gap-2 px-8 py-4 bg-red-600 text-white font-semibold hover:bg-red-700 transition-all duration-300 rounded-lg text-lg hover:opacity-90 cursor-pointer">
-                Parler de vos enjeux →
+                Discutons de vos enjeux →
               </motion.button>
             </Link>
           </motion.div>
