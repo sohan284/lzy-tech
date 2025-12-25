@@ -137,7 +137,7 @@ export default function Navigation() {
                     handleScrollTo("cta");
                   }}
                 >
-                  CTA
+                  Vos secteurs
                 </a>
               </>
             )}
@@ -305,7 +305,7 @@ export default function Navigation() {
                         handleScrollTo("cta");
                       }}
                     >
-                      CTA
+                      Vos secteurs
                     </a>
                   </>
                 )}
