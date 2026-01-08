@@ -271,10 +271,10 @@ export default function ServicesSection() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h2 className="section-title text-primary mb-6">
+          <h2 style={{ textAlign: "center" }} className="section-title  text-primary mb-6">
             Là où nous intervenons
           </h2>
-          <p className="section-text text-gray-800">
+          <p style={{ textAlign: "center" }} className="section-text text-gray-800">
             Nous intervenons là où la donnée, les processus et les outils se
             rejoignent, avec un{" "}
             <span className="">
@@ -321,7 +321,7 @@ export default function ServicesSection() {
         >
           <Link href="/contact">
             <motion.button className="px-8 py-3 lg:py-5 bg-red-600 text-white font-semibold hover:bg-red-700 transition-all duration-300 rounded-lg text-lg hover:opacity-90 cursor-pointer">
-              Consolidez vos données et sécurisez vos revenus →
+              Consolidez vos données et sécurisez vos revenus
             </motion.button>
           </Link>
         </motion.div>

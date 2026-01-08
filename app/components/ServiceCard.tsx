@@ -107,7 +107,7 @@ export default function ServiceCard({
               document.body.removeChild(link);
             }}
           >
-            Téléchargez maintenant →
+            Téléchargez maintenant
           </motion.button>
         )}
       </div>

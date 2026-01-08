@@ -20,12 +20,12 @@ export default function PartnershipSection() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h2 className="section-title text-primary mb-4">
+          <h2 style={{ textAlign: "center" }} className="section-title text-primary mb-4">
             Plus qu&apos;un conseil,
             <br />
             un partenaire de vérité.
           </h2>
-          <p className="section-text font-bold text-gray-600 italic max-w-2xl mx-auto">
+          <p style={{ textAlign: "center" }} className="section-text font-bold text-gray-600 italic max-w-2xl mx-auto">
             &quot;Notre croissance repose sur une règle d&apos;or : nous ne
             vendons pas du temps, nous vendons de l&apos;impact.&quot;
           </p>
