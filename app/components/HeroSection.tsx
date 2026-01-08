@@ -16,7 +16,7 @@ export default function HeroSection() {
           src={backgroundImage}
           alt="Hero Background"
           fill
-          className="object-cover"
+          className="object-cover object-[70%_center] lg:object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#040437]/95 via-[#040437]/80 to-[#040437]/30"></div>
 

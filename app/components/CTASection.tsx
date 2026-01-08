@@ -22,10 +22,10 @@ export default function CTASection() {
           src={backgroundImage}
           alt="CTA Background"
           fill
-          className="object-cover"
+          className="object-cover object-[80%_center] lg:object-center"
         />
         {/* Dark blue overlay with pattern */}
-        <div className="absolute inset-0 bg-[#002FA7] opacity-85 lg:opacity-50"></div>
+        <div className="absolute inset-0 bg-[#002FA7] opacity-80 lg:opacity-50"></div>
         {/* Responsive blue overlay shape */}
         <motion.div
           className="absolute hidden lg:block w-[85vw] md:w-[75vw] lg:w-[85vw] xl:w-[70vw] h-full -left-20 md:-left-32 lg:-left-40 bg-primary/90 z-20 rounded-br-[60%] md:rounded-br-[70%] lg:rounded-br-[75%] 2xl:rounded-br-[80%] overflow-hidden"
