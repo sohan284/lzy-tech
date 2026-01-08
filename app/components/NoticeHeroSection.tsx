@@ -82,6 +82,7 @@ export default function NoticeHeroSection({
       <div className="relative z-10 px-8 lg:px-16 pt-20 pb-16 max-w-[1440px] mx-auto">
         <div className="max-w-4xl mx-auto">
           <motion.h1
+          style={{textAlign: "center"}}
             className="hero-title text-white mb-6 text-center"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}

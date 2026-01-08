@@ -83,6 +83,7 @@ export default function ContactHeroSection() {
       <div className="relative z-10 px-8 lg:px-16 pt-24 pb-20 max-w-[1440px] mx-auto">
         <div className="">
           <motion.h1
+          style={{textAlign: "center"}}
             className="hero-title text-white mb-8 text-center"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -94,7 +95,8 @@ export default function ContactHeroSection() {
           </motion.h1>
 
           <motion.p
-            className="section-text text-white mb-6 max-w-3xl mx-auto text-center"
+            style={{textAlign: "center"}}
+            className="section-text text-white mb-6 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
@@ -119,7 +121,8 @@ export default function ContactHeroSection() {
           </motion.p>
 
           <motion.p
-            className="section-text-small text-white/90 max-w-3xl mx-auto text-center"
+            style={{textAlign: "center"}}
+            className="section-text-small text-white/90 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
