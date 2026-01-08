@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import backgroundImage from "@/public/assets/client.jpg";
+import clientImage from "@/public/assets/client.png";
 
 export default function ClientsSection() {
   const ref = useRef(null);
@@ -51,7 +52,8 @@ export default function ClientsSection() {
         </motion.div>
 
         {/* Image Container with Absolute Positioned Categories */}
-        <div className="py-12 relative w-full max-w-5xl mx-auto">
+        <Image src={clientImage.src} width={1000} height={1000} alt="Clients Background" className="object-contain rounded-lg block md:hidden w-full h-full" />
+        <div className="py-12 hidden md:block relative w-full max-w-5xl mx-auto">
           {/* Central Image */}
           <motion.div
             className="relative w-full aspect-[4/3] mx-auto"
