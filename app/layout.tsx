@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "LZY Tech - Innovative Technology Solutions",
+  title: "IzyTechnology ",
   description:
     "Building innovative solutions for the future. We create cutting-edge technology that transforms businesses and enhances user experiences.",
   keywords: [
@@ -26,6 +26,11 @@ export const metadata: Metadata = {
     "software",
     "development",
   ],
+  icons: {
+    icon: "/assets/redLogo.png",
+    shortcut: "/assets/redLogo.png",
+    apple: "/assets/redLogo.png",
+  },
 };
 
 export default function RootLayout({

@@ -22,10 +22,10 @@ export default function ClientsSection() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h2 className="section-title text-[#002FA7] mb-6">
+          <h2 style={{ textAlign: "center" }} className="section-title text-[#002FA7] mb-6">
             Avec qui nous travaillons
           </h2>
-          <p className="section-text text-gray-700 mb-8">
+          <p style={{ textAlign: "center" }} className="section-text text-gray-700 mb-8">
             Pour en savoir plus sur la façon dont nous accompagnons ces
             organisations, vous pouvez télécharger notre plaquette détaillée,
             avec plusieurs exemples de missions et d&apos;impacts concrets.
@@ -47,19 +47,7 @@ export default function ClientsSection() {
             }}
           >
             Téléchargez la plaquette IzyTechnology
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
+           
           </motion.button>
         </motion.div>
 

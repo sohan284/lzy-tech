@@ -405,19 +405,7 @@ function SubmitButton() {
       className="w-full px-8 py-4 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed hover:opacity-90 cursor-pointer"
     >
       {pending ? "Envoi en cours..." : "Envoyer"}
-      <svg
-        className="w-5 h-5"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M9 5l7 7-7 7"
-        />
-      </svg>
+      
     </motion.button>
   );
 }
@@ -445,8 +433,28 @@ export default function ContactForm({
   const countryDropdownRef = useRef<HTMLDivElement>(null);
 
   // Phone number state - split into country code and number
-  const [selectedPhoneCode, setSelectedPhoneCode] = useState<string>("+33");
+  const [selectedPhoneCode, setSelectedPhoneCode] = useState<string>("+225");
   const [phoneNumber, setPhoneNumber] = useState("");
+  
+  // Form field values state to preserve on errors
+  const [formValues, setFormValues] = useState({
+    prenom: "",
+    nom: "",
+    organisation: "",
+    email: "",
+    message: "",
+    autre: "",
+    consent: false,
+  });
+  
+  // Priorities state
+  const [priorities, setPriorities] = useState<string[]>([]);
+  
+  // Client-side validation errors
+  const [clientErrors, setClientErrors] = useState<{
+    pays?: string;
+    phone?: string;
+  }>({});
 
   // Country code dropdown state
   const [isPhoneCodeOpen, setIsPhoneCodeOpen] = useState(false);
@@ -477,6 +485,28 @@ export default function ContactForm({
   const filteredCountries = countries.filter((country) =>
     country.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  // Clear form on successful submission
+  useEffect(() => {
+    if (state?.success) {
+      // Use setTimeout to avoid cascading renders
+      setTimeout(() => {
+        setFormValues({
+          prenom: "",
+          nom: "",
+          organisation: "",
+          email: "",
+          message: "",
+          autre: "",
+          consent: false,
+        });
+        setPriorities([]);
+        setPhoneNumber("");
+        setSelectedCountry(null);
+        setSelectedPhoneCode("+225");
+      }, 0);
+    }
+  }, [state?.success]);
 
   // Close dropdowns when clicking outside
   useEffect(() => {
@@ -511,18 +541,50 @@ export default function ContactForm({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isCountryOpen, isPhoneCodeOpen]);
+  
+  // Validate Ivorian phone number (10 digits)
+  const validatePhoneNumber = (code: string, number: string): string | null => {
+    if (code === "+225") {
+      const digitsOnly = number.replace(/\D/g, "");
+      if (digitsOnly.length !== 10) {
+        return "Le numéro ivoirien doit contenir exactement 10 chiffres";
+      }
+    }
+    return null;
+  };
 
   return (
     <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 max-w-[1440px] mx-auto">
       {/* Left Side - Form */}
       <div className="bg-white p-8 lg:p-12 xl:p-16 flex items-center ">
         <div className="w-full max-w-2xl mx-auto">
-          <motion.form
+            <motion.form
             action={formAction}
             className="space-y-8"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
+            onSubmit={(e) => {
+              // Clear previous client errors
+              setClientErrors({});
+              
+              // Client-side validation for country
+              if (!selectedCountry || !selectedCountry.code) {
+                e.preventDefault();
+                setClientErrors({ pays: "Le pays est requis" });
+                return false;
+              }
+              
+              // Client-side validation for Ivorian phone numbers
+              if (selectedPhoneCode === "+225") {
+                const phoneError = validatePhoneNumber(selectedPhoneCode, phoneNumber);
+                if (phoneError) {
+                  e.preventDefault();
+                  setClientErrors({ phone: phoneError });
+                  return false;
+                }
+              }
+            }}
           >
             {/* Contact Information Fields - Two Columns */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -538,6 +600,10 @@ export default function ContactForm({
                   id="prenom"
                   name="prenom"
                   required
+                  value={formValues.prenom}
+                  onChange={(e) =>
+                    setFormValues({ ...formValues, prenom: e.target.value })
+                  }
                   className="w-full text-black px-4 py-3 bg-[#F6F2E7] border border-[#F6F2E7] rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors"
                   placeholder=""
                 />
@@ -560,6 +626,10 @@ export default function ContactForm({
                   id="nom"
                   name="nom"
                   required
+                  value={formValues.nom}
+                  onChange={(e) =>
+                    setFormValues({ ...formValues, nom: e.target.value })
+                  }
                   className="w-full text-black px-4 py-3 bg-[#F6F2E7] border border-[#F6F2E7] rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors"
                   placeholder=""
                 />
@@ -582,6 +652,10 @@ export default function ContactForm({
                   id="organisation"
                   name="organisation"
                   required
+                  value={formValues.organisation}
+                  onChange={(e) =>
+                    setFormValues({ ...formValues, organisation: e.target.value })
+                  }
                   className="w-full text-black px-4 py-3 bg-[#F6F2E7] border border-[#F6F2E7] rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors"
                   placeholder=""
                 />
@@ -606,14 +680,17 @@ export default function ContactForm({
                     id="pays"
                     name="pays"
                     value={selectedCountry?.code || ""}
-                    required
                   />
                   {/* Custom dropdown button */}
                   <button
                     type="button"
                     onClick={() => setIsCountryOpen(!isCountryOpen)}
-                    className={`w-full text-left text-black px-4 py-3 bg-[#F6F2E7] border border-[#F6F2E7] rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors flex items-center justify-between ${
-                      !selectedCountry ? "text-gray-500" : "text-black"
+                    className={`w-full text-left text-black px-4 py-3 bg-[#F6F2E7] border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors flex items-center justify-between ${
+                      !selectedCountry 
+                        ? "text-gray-500 border-[#F6F2E7]" 
+                        : state?.errors?.pays
+                        ? "text-black border-red-500"
+                        : "text-black border-[#F6F2E7]"
                     }`}
                   >
                     <span>
@@ -662,6 +739,12 @@ export default function ContactForm({
                                 setSelectedCountry(country);
                                 setIsCountryOpen(false);
                                 setSearchQuery("");
+                                // Clear client error when country is selected
+                                setClientErrors((prev) => {
+                                  const newErrors = { ...prev };
+                                  delete newErrors.pays;
+                                  return newErrors;
+                                });
                                 // Auto-fill phone code dropdown with country code
                                 const phoneCode =
                                   countryPhoneCodes[country.code] || "";
@@ -687,9 +770,9 @@ export default function ContactForm({
                     </div>
                   )}
                 </div>
-                {state?.errors?.pays && (
+                {(state?.errors?.pays || clientErrors.pays) && (
                   <p className="mt-1 text-sm text-red-600">
-                    {state.errors.pays}
+                    {state?.errors?.pays || clientErrors.pays}
                   </p>
                 )}
               </div>
@@ -706,6 +789,10 @@ export default function ContactForm({
                   id="email"
                   name="email"
                   required
+                  value={formValues.email}
+                  onChange={(e) =>
+                    setFormValues({ ...formValues, email: e.target.value })
+                  }
                   className="w-full text-black px-4 py-3 bg-[#F6F2E7] border border-[#F6F2E7] rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors"
                   placeholder=""
                 />
@@ -833,6 +920,11 @@ export default function ContactForm({
                     {state.errors.telephone}
                   </p>
                 )}
+                {(state?.errors?.telephone || clientErrors.phone) && (
+                  <p className="mt-1 text-sm text-red-600">
+                    {state?.errors?.telephone || clientErrors.phone}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -841,12 +933,29 @@ export default function ContactForm({
               <h3 className="section-text-small font-bold text-primary mb-4">
                 Votre priorité actuelle
               </h3>
+              {/* Hidden inputs for form submission */}
+              {priorities.map((priority) => (
+                <input
+                  key={priority}
+                  type="hidden"
+                  name="priorities"
+                  value={priority}
+                />
+              ))}
               <div className="space-y-3">
                 <label className="flex items-center gap-3 cursor-pointer">
                   <input
                     type="checkbox"
                     name="priorities"
                     value="fiabiliser-donnees"
+                    checked={priorities.includes("fiabiliser-donnees")}
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setPriorities([...priorities, "fiabiliser-donnees"]);
+                      } else {
+                        setPriorities(priorities.filter((p) => p !== "fiabiliser-donnees"));
+                      }
+                    }}
                     className="w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary"
                   />
                   <span className="text-gray-700">Fiabiliser nos données</span>
@@ -856,6 +965,14 @@ export default function ContactForm({
                     type="checkbox"
                     name="priorities"
                     value="securiser-revenus"
+                    checked={priorities.includes("securiser-revenus")}
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setPriorities([...priorities, "securiser-revenus"]);
+                      } else {
+                        setPriorities(priorities.filter((p) => p !== "securiser-revenus"));
+                      }
+                    }}
                     className="w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary"
                   />
                   <span className="text-gray-700">Sécuriser nos revenus</span>
@@ -865,6 +982,14 @@ export default function ContactForm({
                     type="checkbox"
                     name="priorities"
                     value="optimiser-processus"
+                    checked={priorities.includes("optimiser-processus")}
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setPriorities([...priorities, "optimiser-processus"]);
+                      } else {
+                        setPriorities(priorities.filter((p) => p !== "optimiser-processus"));
+                      }
+                    }}
                     className="w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary"
                   />
                   <span className="text-gray-700">Optimiser nos processus</span>
@@ -874,6 +999,14 @@ export default function ContactForm({
                     type="checkbox"
                     name="priorities"
                     value="mieux-travailler"
+                    checked={priorities.includes("mieux-travailler")}
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setPriorities([...priorities, "mieux-travailler"]);
+                      } else {
+                        setPriorities(priorities.filter((p) => p !== "mieux-travailler"));
+                      }
+                    }}
                     className="w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary"
                   />
                   <span className="text-gray-700">
@@ -886,6 +1019,14 @@ export default function ContactForm({
                       type="checkbox"
                       name="priorities"
                       value="autre"
+                      checked={priorities.includes("autre")}
+                      onChange={(e) => {
+                        if (e.target.checked) {
+                          setPriorities([...priorities, "autre"]);
+                        } else {
+                          setPriorities(priorities.filter((p) => p !== "autre"));
+                        }
+                      }}
                       className="w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary"
                     />
                     <span className="text-gray-700">Autre</span>
@@ -893,6 +1034,10 @@ export default function ContactForm({
                   <input
                     type="text"
                     name="autre"
+                    value={formValues.autre}
+                    onChange={(e) =>
+                      setFormValues({ ...formValues, autre: e.target.value })
+                    }
                     className="flex-1 text-black px-3 py-2 bg-[#F6F2E7] border border-[#F6F2E7] rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors text-sm"
                     placeholder=""
                   />
@@ -912,12 +1057,42 @@ export default function ContactForm({
                 name="message"
                 required
                 rows={6}
+                value={formValues.message}
+                onChange={(e) =>
+                  setFormValues({ ...formValues, message: e.target.value })
+                }
                 className="w-full text-black px-4 py-3 bg-[#F6F2E7] border border-[#F6F2E7] rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors resize-none"
                 placeholder="Décrivez brièvement vos enjeux"
               />
               {state?.errors?.message && (
                 <p className="mt-1 text-sm text-red-600">
                   {state.errors.message}
+                </p>
+              )}
+            </div>
+            
+            {/* Consent Checkbox */}
+            <div>
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  name="consent"
+                  required
+                  checked={formValues.consent}
+                  onChange={(e) =>
+                    setFormValues({ ...formValues, consent: e.target.checked })
+                  }
+                  className="w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary mt-0.5 shrink-0"
+                />
+                <span className="text-gray-700 text-sm">
+                  J&apos;accepte qu&apos;IzyTechnology collecte mes données personnelles pour répondre à ma demande et pour m&apos;adresser des sollicitations commerciales selon mon profil. <span className="text-primary underline">
+                  En savoir plus sur le traitement de données et vos droits.
+                  </span>
+                </span>
+              </label>
+              {state?.errors?.consent && (
+                <p className="mt-1 text-sm text-red-600">
+                  {state.errors.consent}
                 </p>
               )}
             </div>

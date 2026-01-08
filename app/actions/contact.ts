@@ -8,8 +8,8 @@ import * as nodemailer from "nodemailer";
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "sr.sohan088@gmail.com", // Replace with your Gmail address
-    pass: "oefb hwkp euma gasf", // Replace with your Gmail App Password
+    user: process.env.SMTP_USER, // Replace with your Gmail address
+    pass: process.env.SMTP_PASSWORD, // Replace with your Gmail App Password
   },
 });
 
@@ -25,6 +25,7 @@ export type ContactFormState = {
     telephone?: string;
     priorities?: string;
     message?: string;
+    consent?: string;
   };
 };
 
@@ -47,9 +48,11 @@ export async function submitContactForm(
   const pays = formData.get("pays") as string;
   const email = formData.get("email") as string;
   const telephone = formData.get("telephone") as string;
+  const phoneCode = formData.get("phoneCode") as string;
   const priorities = formData.getAll("priorities") as string[];
   const autre = formData.get("autre") as string;
   const message = formData.get("message") as string;
+  const consent = formData.get("consent") as string;
 
   // Basic validation
   const errors: ContactFormState["errors"] = {};
@@ -72,12 +75,24 @@ export async function submitContactForm(
 
   if (!email || email.trim().length === 0) {
     errors.email = "L'email est requis";
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    errors.email = "Veuillez entrer une adresse email valide";
+  } else {
+    // Improved email regex: requires . + minimum 2 characters at the end
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!emailRegex.test(email)) {
+      errors.email = "Veuillez entrer une adresse email valide (ex: nom@domaine.com)";
+    }
   }
 
   if (!telephone || telephone.trim().length === 0) {
     errors.telephone = "Le téléphone est requis";
+  } else {
+    // Validate Ivorian phone numbers (+225) - must be exactly 10 digits
+    if (phoneCode === "+225") {
+      const phoneNumberOnly = telephone.replace(phoneCode, "").replace(/\D/g, "");
+      if (phoneNumberOnly.length !== 10) {
+        errors.telephone = "Le numéro ivoirien doit contenir exactement 10 chiffres";
+      }
+    }
   }
 
   if (priorities.length === 0) {
@@ -86,6 +101,10 @@ export async function submitContactForm(
 
   if (!message || message.trim().length === 0) {
     errors.message = "Le message est requis";
+  }
+
+  if (!consent || consent !== "on") {
+    errors.consent = "Vous devez accepter le traitement de vos données personnelles";
   }
 
   if (Object.keys(errors).length > 0) {

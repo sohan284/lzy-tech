@@ -70,13 +70,13 @@ export default function Navigation() {
             className="flex items-center gap-2 hover:opacity-80 transition-opacity"
           >
             <Image src={logo} alt="Logo" className="w-10 h-10" />
-            <span className="text-white text-xl font-semibold">
-              Izy Technology
+            <span className="text-white lg:text-xl font-semibold">
+              IzyTechnology
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden xl:flex items-center gap-8">
             {showSectionLinks && (
               <>
                 <a
@@ -129,12 +129,6 @@ export default function Navigation() {
                 >
                   Notre impact
                 </a>
-                <Link
-                  href="/privacy"
-                  className="text-white hover:text-gray-300 transition-colors"
-                >
-                  Mentions légales
-                </Link>
               </>
             )}
             {!showSectionLinks && (
@@ -145,25 +139,17 @@ export default function Navigation() {
                 Accueil
               </Link>
             )}
-            {!showSectionLinks && (
-              <Link
-                href="/privacy"
-                className="text-white hover:text-gray-300 transition-colors"
-              >
-                Mentions légales
-              </Link>
-            )}
             <Link
               href="/contact"
               className="px-6 py-2.5 bg-red-600 text-white font-medium hover:bg-red-700 transition-colors rounded flex items-center gap-2"
             >
-              Contact →
+              Contact
             </Link>
           </div>
 
           {/* Mobile Burger Menu Button */}
           <button
-            className="md:hidden text-white focus:outline-none relative z-[9999]"
+            className="xl:hidden text-white focus:outline-none relative z-[9999]"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -206,7 +192,7 @@ export default function Navigation() {
           <>
             {/* Backdrop */}
             <motion.div
-              className="fixed inset-0 bg-black/50 z-[9999] md:hidden"
+              className="fixed inset-0 bg-black/50 z-[9999] xl:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -215,7 +201,7 @@ export default function Navigation() {
 
             {/* Mobile Menu */}
             <motion.div
-              className="fixed top-0 right-0 h-screen w-80 bg-[#0F172A] shadow-xl z-[9999] md:hidden overflow-y-auto"
+              className="fixed top-0 right-0 h-screen w-80 bg-[#0F172A] shadow-xl z-[9999] xl:hidden overflow-y-auto"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
@@ -295,13 +281,6 @@ export default function Navigation() {
                     >
                       Notre impact
                     </a>
-                    <Link
-                      href="/privacy"
-                      className="text-white hover:text-gray-300 transition-colors py-4 border-b border-white/10"
-                      onClick={handleLinkClick}
-                    >
-                      Mentions légales
-                    </Link>
                   </>
                 )}
                 {!showSectionLinks && (
@@ -313,21 +292,12 @@ export default function Navigation() {
                     Accueil
                   </Link>
                 )}
-                {!showSectionLinks && (
-                  <Link
-                    href="/privacy"
-                    className="text-white hover:text-gray-300 transition-colors py-4 border-b border-white/10"
-                    onClick={handleLinkClick}
-                  >
-                    Mentions légales
-                  </Link>
-                )}
                 <Link
                   href="/contact"
                   className="mt-4 px-6 py-3 bg-red-600 text-white font-medium hover:bg-red-700 transition-colors rounded flex items-center justify-center gap-2"
                   onClick={handleLinkClick}
                 >
-                  Contact →
+                  Contact
                 </Link>
               </div>
             </motion.div>

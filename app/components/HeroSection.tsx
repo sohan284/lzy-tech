@@ -82,7 +82,7 @@ export default function HeroSection() {
 
       {/* Hero Content */}
       <div className="relative z-10 px-8 lg:px-16 pt-24 pb-32 max-w-[1440px] mx-auto">
-        <div className="max-w-3xl">
+        <div className="max-w-3xl hero-title">
           <motion.h1
             className="hero-title text-white mb-8"
             initial={{ opacity: 0, y: 30 }}
@@ -131,7 +131,7 @@ export default function HeroSection() {
           >
             <Link href="/contact">
               <motion.button className="inline-flex items-center gap-2 px-8 py-4 bg-red-600 text-white font-semibold hover:bg-red-700 transition-all duration-300 rounded-lg text-lg hover:opacity-90 cursor-pointer">
-                Discutons de vos enjeux →
+                Discutons de vos enjeux
               </motion.button>
             </Link>
           </motion.div>

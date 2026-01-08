@@ -33,15 +33,15 @@ body {
 
 /* Reusable Typography Classes */
 .section-title {
-  @apply text-3xl md:text-4xl lg:text-5xl font-bold leading-tight;
+  @apply text-center md:text-left text-3xl md:text-4xl lg:text-5xl font-bold leading-tight;
 }
 
 .hero-title {
-  @apply text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight;
+  @apply text-center md:text-left text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight;
 }
 
 .section-text {
-  @apply text-xl md:text-2xl leading-relaxed;
+  @apply text-center md:text-left text-xl md:text-2xl leading-relaxed;
 }
 
 .section-text-small {

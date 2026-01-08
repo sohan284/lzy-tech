@@ -25,10 +25,10 @@ export default function CTASection() {
           className="object-cover"
         />
         {/* Dark blue overlay with pattern */}
-        <div className="absolute inset-0 bg-[#002FA7] opacity-50"></div>
+        <div className="absolute inset-0 bg-[#002FA7] opacity-85 lg:opacity-50"></div>
         {/* Responsive blue overlay shape */}
         <motion.div
-          className="absolute hidden lg:block w-[85vw] md:w-[75vw] lg:w-[70vw] h-full -left-20 md:-left-32 lg:-left-40 bg-primary/90 z-20 rounded-br-[60%] md:rounded-br-[70%] lg:rounded-br-[80%] overflow-hidden"
+          className="absolute hidden lg:block w-[85vw] md:w-[75vw] lg:w-[85vw] xl:w-[70vw] h-full -left-20 md:-left-32 lg:-left-40 bg-primary/90 z-20 rounded-br-[60%] md:rounded-br-[70%] lg:rounded-br-[75%] 2xl:rounded-br-[80%] overflow-hidden"
           initial={{ x: -200 }}
           animate={isInView ? { x: 0 } : {}}
           transition={{ duration: 1, ease: "easeOut" }}
@@ -36,17 +36,7 @@ export default function CTASection() {
           {/* Logo Watermark */}
           <LogoWatermark opacity={20} />
         </motion.div>
-        {/* <motion.div
-          initial={{ x: -100, opacity: 0 }}
-          animate={isInView ? { x: 0, opacity: 1 } : {}}
-          transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-        >
-          <Image
-            src={bgShape}
-            alt="Logo"
-            className="absolute bottom-0 left-0 z-20"
-          />
-        </motion.div> */}
+       
       </div>
 
       {/* Content */}
@@ -121,29 +111,16 @@ export default function CTASection() {
 
             {/* CTA Button */}
             <motion.div
+              className="text-center lg:text-left"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
             >
               <Link href="/contact">
-                <motion.button className="inline-flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 bg-white text-[#002FA7] font-semibold rounded-lg hover:bg-gray-100 transition-all duration-300 text-base md:text-lg w-full sm:w-auto justify-center hover:opacity-90 cursor-pointer">
+                <motion.button className="inline-flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 bg-white text-[#002FA7] font-semibold rounded-lg hover:bg-gray-100 transition-all duration-300 text-base md:text-lg  sm:w-auto justify-center hover:opacity-90 cursor-pointer">
                   <span className="whitespace-nowrap">
-                    Echangez avec un expert IzyTechnology
+                    Prenez contact maintenant
                   </span>
-                  <span className="hidden sm:inline">+</span>
-                  <svg
-                    className="w-4 h-4 md:w-5 md:h-5 shrink-0"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
                 </motion.button>
               </Link>
             </motion.div>

@@ -71,7 +71,8 @@ export default function TrustSection() {
     <section className="w-full py-20 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="max-w-[1440px] mx-auto">
         <motion.h2
-          className="section-title text-[#002FA7] text-center mb-12"
+          style={{ textAlign: "center" }}
+          className="section-title text-[#002FA7] mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
