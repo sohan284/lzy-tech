@@ -43,7 +43,7 @@ export default function ContactHeroSection() {
               duration: 6,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: 1,
+              delay: 0.3,
             }}
           />
           <motion.div
@@ -56,7 +56,7 @@ export default function ContactHeroSection() {
               duration: 7,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: 0.5,
+              delay: 0.2,
             }}
           />
         </div>
@@ -74,7 +74,7 @@ export default function ContactHeroSection() {
       <motion.div
         initial={{ x: -100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 1, ease: "easeOut" }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
       >
         {/* <Image src={bgShape} alt="Background Shape" className="absolute bottom-0 left-0" /> */}
       </motion.div>
@@ -87,7 +87,7 @@ export default function ContactHeroSection() {
             className="hero-title text-white mb-8 text-center"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
           >
             Construisons
             <br />
@@ -99,7 +99,7 @@ export default function ContactHeroSection() {
             className="section-text text-white mb-6 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
           >
             Dites-nous en quelques mots ce qui vous préoccupe aujourd&apos;hui :{" "}
             <span className="text-yellow-500 font-semibold">
@@ -125,7 +125,7 @@ export default function ContactHeroSection() {
             className="section-text-small text-white/90 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
           >
             Nous reviendrons vers vous pour un premier échange, sans engagement,
             afin de comprendre vos enjeux et vérifier si nous sommes le bon

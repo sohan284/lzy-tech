@@ -18,7 +18,7 @@ export default function PartnershipSection() {
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
         >
           <h2 style={{ textAlign: "center" }} className="section-title text-primary mb-4">
             Plus qu&apos;un conseil,
@@ -37,7 +37,7 @@ export default function PartnershipSection() {
             className="relative"
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
           >
             <motion.div
               className="relative rounded-lg overflow-hidden shadow-xl"
@@ -73,7 +73,7 @@ export default function PartnershipSection() {
                 className="absolute -top-4 -left-4 w-32 h-1 bg-yellow-500"
                 initial={{ width: 0 }}
                 animate={isInView ? { width: 128 } : {}}
-                transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+                transition={{ duration: 0.4, delay: 0.25, ease: "easeOut" }}
               />
             </motion.div>
           </motion.div>
@@ -86,7 +86,7 @@ export default function PartnershipSection() {
             variants={{
               visible: {
                 transition: {
-                  staggerChildren: 0.2,
+                  staggerChildren: 0.1,
                 },
               },
             }}
@@ -100,14 +100,12 @@ export default function PartnershipSection() {
                 hidden: { opacity: 0, x: 50 },
                 visible: { opacity: 1, x: 0 },
               }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              whileHover={{ x: 5 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
             >
               <div className="flex flex-col items-center flex-shrink-0 relative z-10">
                 <motion.div
                   className="w-12 h-12 rounded-full bg-white text-primary border-2 border-primary flex items-center justify-center font-bold"
-                  whileHover={{ scale: 1.1, rotate: 360 }}
-                  transition={{ duration: 0.5 }}
+                 
                 >
                   01
                 </motion.div>
@@ -135,14 +133,13 @@ export default function PartnershipSection() {
                 hidden: { opacity: 0, x: 50 },
                 visible: { opacity: 1, x: 0 },
               }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              whileHover={{ x: 5 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+           
             >
               <div className="flex flex-col items-center flex-shrink-0 relative z-10">
                 <motion.div
                   className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold"
-                  whileHover={{ scale: 1.1, rotate: 360 }}
-                  transition={{ duration: 0.5 }}
+                
                 >
                   02
                 </motion.div>
@@ -170,14 +167,13 @@ export default function PartnershipSection() {
                 hidden: { opacity: 0, x: 50 },
                 visible: { opacity: 1, x: 0 },
               }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              whileHover={{ x: 5 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+       
             >
               <div className="flex flex-col items-center flex-shrink-0 relative z-10">
                 <motion.div
                   className="w-12 h-12 rounded-full bg-white text-primary border-2 border-primary flex items-center justify-center font-bold"
-                  whileHover={{ scale: 1.1, rotate: 360 }}
-                  transition={{ duration: 0.5 }}
+                
                 >
                   03
                 </motion.div>

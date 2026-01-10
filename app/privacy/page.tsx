@@ -14,7 +14,7 @@ export default function Privacy() {
             className="bg-white rounded-lg p-8 md:p-12 space-y-10"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
           >
             {/* 1. Éditeur du site */}
             <section>

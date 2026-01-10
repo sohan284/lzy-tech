@@ -176,7 +176,7 @@ export async function submitContactForm(
 
     return {
       success: false,
-      message: "Veuillez corriger les erreurs ci-dessous",
+      message: "Veuillez corriger les erreurs ci-dessus",
       errors,
     };
   }

@@ -4,6 +4,7 @@ import { useFormState, useFormStatus } from "react-dom";
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { type ContactFormState } from "../actions/contact";
 import contactImage from "@/public/assets/contactImage.jpg";
 
@@ -422,6 +423,7 @@ export default function ContactForm({
     submitContactForm,
     null
   );
+  const router = useRouter();
 
   // Country dropdown state
   const [isCountryOpen, setIsCountryOpen] = useState(false);
@@ -455,6 +457,10 @@ export default function ContactForm({
     pays?: string;
     phone?: string;
   }>({});
+
+  // Field focus states for showing explanations
+  const [isEmailFocused, setIsEmailFocused] = useState(false);
+  const [isPhoneFocused, setIsPhoneFocused] = useState(false);
 
   // Country code dropdown state
   const [isPhoneCodeOpen, setIsPhoneCodeOpen] = useState(false);
@@ -793,9 +799,16 @@ export default function ContactForm({
                   onChange={(e) =>
                     setFormValues({ ...formValues, email: e.target.value })
                   }
+                  onFocus={() => setIsEmailFocused(true)}
+                  onBlur={() => setIsEmailFocused(false)}
                   className="w-full text-black px-4 py-3 bg-[#F6F2E7] border border-[#F6F2E7] rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors"
                   placeholder=""
                 />
+                {isEmailFocused && (
+                  <p className="mt-1 text-xs text-gray-500">
+                    Entrez une adresse email valide (ex: nom@exemple.com)
+                  </p>
+                )}
                 {state?.errors?.email && (
                   <p className="mt-1 text-sm text-red-600">
                     {state.errors.email}
@@ -904,10 +917,20 @@ export default function ContactForm({
                       const value = e.target.value.replace(/[^\d\s-]/g, "");
                       setPhoneNumber(value);
                     }}
+                    onFocus={() => setIsPhoneFocused(true)}
+                    onBlur={() => setIsPhoneFocused(false)}
                     className="flex-1 text-black px-4 py-3 bg-[#F6F2E7] border border-[#F6F2E7] rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors w-[80%]"
                     placeholder="123456789"
                   />
                 </div>
+                {/* Explanation text for phone number */}
+                {isPhoneFocused && (
+                  <p className="mt-1 text-xs text-gray-500">
+                    {selectedPhoneCode === "+225"
+                      ? "Entrez un numéro ivoirien de 10 chiffres (ex: 07 12 34 56 78)"
+                      : "Entrez votre numéro de téléphone sans le code pays"}
+                  </p>
+                )}
                 {/* Hidden input for form submission with full phone number (country code + number) */}
                 <input
                   type="hidden"
@@ -1085,7 +1108,14 @@ export default function ContactForm({
                   className="w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary mt-0.5 shrink-0"
                 />
                 <span className="text-gray-700 text-sm">
-                  J&apos;accepte qu&apos;IzyTechnology collecte mes données personnelles pour répondre à ma demande et pour m&apos;adresser des sollicitations commerciales selon mon profil. <span className="text-primary underline">
+                  J&apos;accepte qu&apos;IzyTechnology collecte mes données personnelles pour répondre à ma demande et pour m&apos;adresser des sollicitations commerciales selon mon profil. <span
+                   className="text-primary underline cursor-pointer"
+                   onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    router.push("/donnees-personnelles");
+                  }}
+                  >
                   En savoir plus sur le traitement de données et vos droits.
                   </span>
                 </span>

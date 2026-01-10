@@ -269,7 +269,7 @@ export default function ServicesSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
         >
           <h2 style={{ textAlign: "center" }} className="section-title  text-primary mb-6">
             Là où nous intervenons
@@ -293,7 +293,7 @@ export default function ServicesSection() {
           variants={{
             visible: {
               transition: {
-                staggerChildren: 0.1,
+                staggerChildren: 0.05,
               },
             },
           }}
@@ -314,10 +314,10 @@ export default function ServicesSection() {
         {/* CTA Button */}
         <motion.div
           className="text-center"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+          transition={{ duration: 0.3, delay: 0.15, ease: "easeOut" }}
         >
           <Link href="/contact">
             <motion.button className="px-8 py-3 lg:py-5 bg-red-600 text-white font-semibold hover:bg-red-700 transition-all duration-300 rounded-lg text-lg hover:opacity-90 cursor-pointer">

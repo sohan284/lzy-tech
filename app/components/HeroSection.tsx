@@ -44,7 +44,7 @@ export default function HeroSection() {
               duration: 6,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: 1,
+              delay: 0.3,
             }}
           />
           <motion.div
@@ -57,7 +57,7 @@ export default function HeroSection() {
               duration: 7,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: 0.5,
+              delay: 0.2,
             }}
           />
         </div>
@@ -75,7 +75,7 @@ export default function HeroSection() {
       <motion.div
         initial={{ x: -100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 1, ease: "easeOut" }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
       >
         {/* <Image src={bgShape} alt="Logo" className="absolute bottom-0 left-0" /> */}
       </motion.div>
@@ -87,7 +87,7 @@ export default function HeroSection() {
             className="hero-title text-white mb-8"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
           >
             Décidez vite,
             <br />
@@ -98,7 +98,7 @@ export default function HeroSection() {
             className="section-text text-white/90 mb-12 max-w-2xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
           >
             Ne laissez plus la complexité de vos données ou de vos processus
             freiner votre croissance. Que vous soyez une ETI, PME ou grande
@@ -114,7 +114,7 @@ export default function HeroSection() {
             className="flex items-start gap-4 mb-12"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
           >
             <div className="w-1 h-24 bg-yellow-500 shrink-0 mt-1"></div>
             <p className="section-text text-white/90">
@@ -127,7 +127,7 @@ export default function HeroSection() {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.3, delay: 0.3, ease: "easeOut" }}
           >
             <Link href="/contact">
               <motion.button className="inline-flex items-center gap-2 px-8 py-4 bg-red-600 text-white font-semibold hover:bg-red-700 transition-all duration-300 rounded-lg text-lg hover:opacity-90 cursor-pointer">

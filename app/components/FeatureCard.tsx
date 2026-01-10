@@ -20,11 +20,10 @@ export default function FeatureCard({
   return (
     <motion.div
       className="group bg-white border border-gray-200 rounded-lg lg:p-10 p-5 hover:bg-primary hover:border-primary transition-all duration-300 cursor-pointer flex flex-col text-center relative overflow-hidden"
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 0 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.6, delay: index * 0.2, ease: "easeOut" }}
-      whileHover={{ y: -10, scale: 1.02 }}
+      transition={{ duration: 0.3, delay: index * 0.1, ease: "easeOut" }}
     >
       {/* Logo Watermark - appears on hover */}
       <LogoWatermark showOnHover={true} opacity={10} />
@@ -34,8 +33,6 @@ export default function FeatureCard({
         {/* Icon */}
         <motion.div
           className="mb-6 text-center flex items-center justify-center"
-          whileHover={{ scale: 1.1, rotate: 5 }}
-          transition={{ duration: 0.3 }}
         >
           <div className="text-primary group-hover:text-white transition-colors duration-300 text-center">
             {icon}
