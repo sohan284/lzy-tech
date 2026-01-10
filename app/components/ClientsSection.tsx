@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import backgroundImage from "@/public/assets/client.jpg";
+import backgroundImage from "@/public/assets/clientss.png";
 import clientImage from "@/public/assets/client.png";
 
 export default function ClientsSection() {
@@ -26,58 +26,17 @@ export default function ClientsSection() {
           <h2 style={{ textAlign: "center" }} className="section-title text-[#002FA7] mb-6">
             Avec qui nous travaillons
           </h2>
-          <p style={{ textAlign: "center" }} className="section-text text-gray-700 mb-8">
-            Pour en savoir plus sur la façon dont nous accompagnons ces
-            organisations, vous pouvez télécharger notre plaquette détaillée,
-            avec plusieurs exemples de missions et d&apos;impacts concrets.
-          </p>
-
-          {/* Download Button */}
-          <motion.button
-            className="px-8 lg:py-5 py-3 bg-red-600 text-white cursor-pointer font-semibold hover:bg-red-700 transition-all duration-300 rounded-lg text-lg flex items-center gap-2 mx-auto hover:opacity-90"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.3, delay: 0.15, ease: "easeOut" }}
-            onClick={() => {
-              const link = document.createElement("a");
-              link.href = "/assets/Plaquette IzyTechnology.pdf";
-              link.download = "Plaquette IzyTechnology.pdf";
-              document.body.appendChild(link);
-              link.click();
-              document.body.removeChild(link);
-            }}
-          >
-            Téléchargez la plaquette IzyTechnology
-          </motion.button>
-        </motion.div>
-
-        {/* Image Container with Absolute Positioned Categories */}
-        <Image src={clientImage.src} width={1000} height={1000} alt="Clients Background" className="object-contain rounded-lg block md:hidden w-full h-full" />
-        <div className="py-12 hidden md:block relative w-full max-w-5xl mx-auto">
-          {/* Central Image */}
+         <div className="flex justify-center">
+         <motion.div className=" grid gap-4 mb-5 md:my-10 ">
           <motion.div
-            className="relative w-full aspect-[4/3] mx-auto"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.4, delay: 0.15, ease: "easeOut" }}
-          >
-            <Image
-              src={backgroundImage}
-              alt="Clients Background"
-              fill
-              className="object-contain rounded-lg"
-            />
-
-            {/* Top Left - Acteurs télécoms */}
-            <motion.div
-              className="absolute top-0 -left-6 md:left-12 xl:left-16 sm:left-8 flex flex-col items-start"
+              className="flex  justify-start"
               initial={{ opacity: 0, x: -30, y: -30 }}
               animate={isInView ? { opacity: 1, x: 0, y: 0 } : {}}
               transition={{ duration: 0.3, ease: "easeOut" }}
             >
-              <div className="flex flex-col items-end">
+              <div className="flex items-center gap-4">
                 <motion.div
-                  className="rounded-full bg-[#002FA7] flex items-center justify-center mb-4"
+                  className="rounded-full bg-[#002FA7] flex items-center justify-center "
                   style={{ width: "clamp(48px, 5vw, 64px)", height: "clamp(48px, 5vw, 64px)" }}
                  
                 >
@@ -120,7 +79,7 @@ export default function ClientsSection() {
                     />
                   </svg>
                 </motion.div>
-                <h3 className="max-w-[100px] text-end sm:max-w-[220px] font-semibold text-black" style={{ fontSize: "clamp(14px, 1.5vw, 20px)" }}>
+                <h3 className=" text-end  font-semibold text-black" style={{ fontSize: "clamp(14px, 1.5vw, 20px)" }}>
                   Acteurs télécom
                 </h3>
               </div>
@@ -128,14 +87,14 @@ export default function ClientsSection() {
 
             {/* Bottom Left - Acteurs de services */}
             <motion.div
-                className="absolute bottom-0 -left-14 sm:-left-2 md:left-3 flex flex-col items-start"
+                className="flex justify-start"
               initial={{ opacity: 0, x: -30, y: 30 }}
               animate={isInView ? { opacity: 1, x: 0, y: 0 } : {}}
               transition={{ duration: 0.3, delay: 0.1, ease: "easeOut" }}
             >
-              <div className="flex flex-col items-end">
+              <div className="flex items-center gap-4">
                 <motion.div
-                  className="rounded-full bg-[#002FA7] flex items-center justify-center mb-4"
+                  className="rounded-full bg-[#002FA7] flex items-center justify-center "
                   style={{ width: "clamp(48px, 5vw, 64px)", height: "clamp(48px, 5vw, 64px)" }}
                 
                 >
@@ -158,9 +117,8 @@ export default function ClientsSection() {
                     />
                   </svg>
                 </motion.div>
-                <h3 className="font-semibold max-w-[130px] sm:max-w-[220px] text-black text-end " style={{ fontSize: "clamp(13px, 1.5vw, 20px)" }}>
+                <h3 className="font-semibold  text-black text-end " style={{ fontSize: "clamp(13px, 1.5vw, 20px)" }}>
                   Acteurs de services
-                  <br />
                   (juridiques, financiers)
                 </h3>
               </div>
@@ -168,14 +126,14 @@ export default function ClientsSection() {
 
             {/* Top Right - Entreprises industrielles */}
             <motion.div
-              className="absolute top-0 -right-14 md:right-0 flex flex-col items-start"
+              className=" flex justify-start"
               initial={{ opacity: 0, x: 30, y: -30 }}
               animate={isInView ? { opacity: 1, x: 0, y: 0 } : {}}
               transition={{ duration: 0.3, ease: "easeOut" }}
             >
-              <div className="flex flex-col items-start text-left">
+              <div className="flex items-center gap-4">
                 <motion.div
-                  className="rounded-full bg-[#002FA7] flex items-center justify-center mb-4"
+                  className="rounded-full bg-[#002FA7] flex items-center justify-center "
                     style={{ width: "clamp(48px, 5vw, 64px)", height: "clamp(48px, 5vw, 64px)" }}
                    
                 >
@@ -198,7 +156,7 @@ export default function ClientsSection() {
                     />
                   </svg>
                 </motion.div>
-                <h3 className="max-w-[130px] sm:max-w-[250px] font-semibold text-black" style={{ fontSize: "clamp(12px, 1.5vw, 20px)" }}>
+                <h3 className=" font-semibold text-black" style={{ fontSize: "clamp(12px, 1.5vw, 20px)" }}>
                   Entreprises industrielles
                 </h3>
               </div>
@@ -206,14 +164,14 @@ export default function ClientsSection() {
 
             {/* Bottom Right - Organismes publics */}
             <motion.div
-              className="absolute bottom-0 -right-14 sm:right-0 md:right-8 flex flex-col items-start"
+              className="  flex justify-start"
               initial={{ opacity: 0, x: 30, y: 30 }}
               animate={isInView ? { opacity: 1, x: 0, y: 0 } : {}}
               transition={{ duration: 0.3, delay: 0.1, ease: "easeOut" }}
             >
-              <div className="flex flex-col items-start text-left">
+              <div className="flex items-center gap-4">
                 <motion.div
-                  className="rounded-full bg-[#002FA7] flex items-center justify-center mb-4"
+                  className="rounded-full bg-[#002FA7] flex items-center justify-center "
                   style={{ width: "clamp(48px, 5vw, 64px)", height: "clamp(48px, 5vw, 64px)" }} 
                 >
                   <svg
@@ -235,13 +193,45 @@ export default function ClientsSection() {
                     />
                   </svg>
                 </motion.div>
-                <h3 className="font-semibold max-w-[130px] sm:max-w-[220px] text-black" style={{ fontSize: "clamp(14px, 1.5vw, 20px)" }}>
+                <h3 className="font-semibold text-black" style={{ fontSize: "clamp(14px, 1.5vw, 20px)" }}>
                   Organismes publics
                 </h3>
               </div>
             </motion.div>
           </motion.div>
-        </div>
+         </div>
+           <Image
+              src={backgroundImage}
+              alt="Clients Background"
+              className="object-contain rounded-lg"
+            />
+          <p style={{ textAlign: "center" }} className="section-text text-gray-700 m-8 ">
+            Pour en savoir plus sur la façon dont nous accompagnons ces
+            organisations, vous pouvez télécharger notre plaquette détaillée,
+            avec plusieurs exemples de missions et d&apos;impacts concrets.
+          </p>
+
+          {/* Download Button */}
+          <motion.button
+            className="px-8 lg:py-5 py-3 bg-red-600 text-white cursor-pointer font-semibold hover:bg-red-700 transition-all duration-300 rounded-lg text-lg flex items-center gap-2 mx-auto hover:opacity-90"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.3, delay: 0.15, ease: "easeOut" }}
+            onClick={() => {
+              const link = document.createElement("a");
+              link.href = "/assets/Plaquette IzyTechnology.pdf";
+              link.download = "Plaquette IzyTechnology.pdf";
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+            }}
+          >
+            Téléchargez la plaquette IzyTechnology
+          </motion.button>
+        </motion.div>
+
+     
+        
       </div>
     </section>
   );

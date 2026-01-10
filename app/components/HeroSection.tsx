@@ -81,7 +81,7 @@ export default function HeroSection() {
       </motion.div>
 
       {/* Hero Content */}
-      <div className="relative z-10 px-8 lg:px-16 pt-24 pb-32 max-w-[1440px] mx-auto">
+      <div className="relative z-10 px-8 lg:px-16 pt-32 pb-32 max-w-[1440px] mx-auto">
         <div className="max-w-3xl hero-title">
           <motion.h1
             className="hero-title text-white mb-8"

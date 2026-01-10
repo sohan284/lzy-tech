@@ -28,7 +28,7 @@ export default function CTASection() {
         <div className="absolute inset-0 bg-[#002FA7] opacity-90 lg:opacity-50"></div>
         {/* Responsive blue overlay shape */}
         <motion.div
-          className="absolute hidden lg:block w-[85vw] md:w-[75vw] lg:w-[85vw] xl:w-[70vw] h-full -left-20 md:-left-32 lg:-left-40 bg-primary/90 z-20 rounded-br-[60%] md:rounded-br-[70%] lg:rounded-br-[75%] 2xl:rounded-br-[80%] overflow-hidden"
+          className="absolute hidden lg:block w-[85vw] md:w-[80vw] lg:w-[85vw] xl:w-[75vw] h-full -left-20 md:-left-32 lg:-left-40 bg-white/70 z-20 rounded-br-[60%] md:rounded-br-[70%] lg:rounded-br-[75%] 2xl:rounded-br-[80%] overflow-hidden"
           initial={{ x: -200 }}
           animate={isInView ? { x: 0 } : {}}
           transition={{ duration: 0.5, ease: "easeOut" }}
@@ -135,11 +135,11 @@ export default function CTASection() {
               transition={{ duration: 0.3, delay: 0.3, ease: "easeOut" }}
             >
               <Link href="/contact">
-                <motion.button className="inline-flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 border-2 border-red-600 text-red-600 bg-white font-semibold rounded-lg hover:bg-red-50 transition-all duration-300 text-base md:text-lg w-full sm:w-auto justify-center cursor-pointer">
+                <motion.button className="inline-flex items-center gap-2 px-8 py-4 bg-red-600 text-white font-semibold hover:bg-red-700 transition-all duration-300 rounded-lg text-lg hover:opacity-90 cursor-pointer w-full sm:w-auto justify-center">
                   <span className="whitespace-nowrap">
                     Prenez contact maintenant
                   </span>
-                </motion.button>
+                </motion.button>ƒ
               </Link>
             </motion.div>
           </motion.div>
@@ -155,7 +155,7 @@ export default function CTASection() {
             transition={{ duration: 0.4, ease: "easeOut" }}
           >
             <motion.h2
-              className="section-title text-white mb-6 md:mb-8"
+              className="section-title text-primary mb-6 md:mb-8"
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
@@ -176,7 +176,7 @@ export default function CTASection() {
               }}
             >
               <motion.p
-                className="section-text text-white"
+                className="section-text text-black"
                 variants={{
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0 },
@@ -189,7 +189,7 @@ export default function CTASection() {
               </motion.p>
 
               <motion.p
-                className="section-text text-white"
+                className="section-text text-black"
                 variants={{
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0 },
@@ -201,7 +201,7 @@ export default function CTASection() {
               </motion.p>
 
               <motion.p
-                className="section-text text-white"
+                className="section-text text-black"
                 variants={{
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0 },
@@ -222,7 +222,7 @@ export default function CTASection() {
               transition={{ duration: 0.3, delay: 0.3, ease: "easeOut" }}
             >
               <Link href="/contact">
-                <motion.button className="inline-flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 bg-white text-[#002FA7] font-semibold rounded-lg hover:bg-gray-100 transition-all duration-300 text-base md:text-lg  sm:w-auto justify-center hover:opacity-90 cursor-pointer">
+                <motion.button className="inline-flex items-center gap-2 px-6 py-3 md:px-8 md:py-4  text-white font-semibold rounded-lg bg-red-600 hover:bg-red-700 transition-all duration-300 text-base md:text-lg  sm:w-auto justify-center hover:opacity-90 cursor-pointer">
                   <span className="whitespace-nowrap">
                     Prenez contact maintenant
                   </span>

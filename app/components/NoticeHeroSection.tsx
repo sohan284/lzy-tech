@@ -79,7 +79,7 @@ export default function NoticeHeroSection({
       />
 
       {/* Hero Content */}
-      <div className="relative z-10 px-8 lg:px-16 pt-20 pb-16 max-w-[1440px] mx-auto">
+      <div className="relative z-10 px-8 lg:px-16 pt-28 pb-16 max-w-[1440px] mx-auto">
         <div className="max-w-4xl mx-auto">
           <motion.h1
           style={{textAlign: "center"}}

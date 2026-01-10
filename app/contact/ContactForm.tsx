@@ -459,8 +459,13 @@ export default function ContactForm({
   }>({});
 
   // Field focus states for showing explanations
+  const [isPrenomFocused, setIsPrenomFocused] = useState(false);
+  const [isNomFocused, setIsNomFocused] = useState(false);
+  const [isOrganisationFocused, setIsOrganisationFocused] = useState(false);
   const [isEmailFocused, setIsEmailFocused] = useState(false);
   const [isPhoneFocused, setIsPhoneFocused] = useState(false);
+  const [isPaysFocused, setIsPaysFocused] = useState(false);
+  const [isPrioritiesFocused, setIsPrioritiesFocused] = useState(false);
 
   // Country code dropdown state
   const [isPhoneCodeOpen, setIsPhoneCodeOpen] = useState(false);
@@ -610,9 +615,16 @@ export default function ContactForm({
                   onChange={(e) =>
                     setFormValues({ ...formValues, prenom: e.target.value })
                   }
+                  onFocus={() => setIsPrenomFocused(true)}
+                  onBlur={() => setIsPrenomFocused(false)}
                   className="w-full text-black px-4 py-3 bg-[#F6F2E7] border border-[#F6F2E7] rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors"
                   placeholder=""
                 />
+                {isPrenomFocused && (
+                  <p className="mt-1 text-xs text-gray-500">
+                    Entrez votre prénom
+                  </p>
+                )}
                 {state?.errors?.prenom && (
                   <p className="mt-1 text-sm text-red-600">
                     {state.errors.prenom}
@@ -636,9 +648,16 @@ export default function ContactForm({
                   onChange={(e) =>
                     setFormValues({ ...formValues, nom: e.target.value })
                   }
+                  onFocus={() => setIsNomFocused(true)}
+                  onBlur={() => setIsNomFocused(false)}
                   className="w-full text-black px-4 py-3 bg-[#F6F2E7] border border-[#F6F2E7] rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors"
                   placeholder=""
                 />
+                {isNomFocused && (
+                  <p className="mt-1 text-xs text-gray-500">
+                    Entrez votre nom de famille
+                  </p>
+                )}
                 {state?.errors?.nom && (
                   <p className="mt-1 text-sm text-red-600">
                     {state.errors.nom}
@@ -662,9 +681,16 @@ export default function ContactForm({
                   onChange={(e) =>
                     setFormValues({ ...formValues, organisation: e.target.value })
                   }
+                  onFocus={() => setIsOrganisationFocused(true)}
+                  onBlur={() => setIsOrganisationFocused(false)}
                   className="w-full text-black px-4 py-3 bg-[#F6F2E7] border border-[#F6F2E7] rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors"
                   placeholder=""
                 />
+                {isOrganisationFocused && (
+                  <p className="mt-1 text-xs text-gray-500">
+                    Entrez le nom de votre entreprise
+                  </p>
+                )}
                 {state?.errors?.organisation && (
                   <p className="mt-1 text-sm text-red-600">
                     {state.errors.organisation}
@@ -691,12 +717,14 @@ export default function ContactForm({
                   <button
                     type="button"
                     onClick={() => setIsCountryOpen(!isCountryOpen)}
-                    className={`w-full text-left text-black px-4 py-3 bg-[#F6F2E7] border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors flex items-center justify-between ${
+                    onFocus={() => setIsPaysFocused(true)}
+                    onBlur={() => setIsPaysFocused(false)}
+                    className={`w-full text-left text-black px-4 py-3 bg-[#F6F2E7] rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors flex items-center justify-between ${
                       !selectedCountry 
-                        ? "text-gray-500 border-[#F6F2E7]" 
-                        : state?.errors?.pays
-                        ? "text-black border-red-500"
-                        : "text-black border-[#F6F2E7]"
+                        ? `text-gray-500 ${(state?.errors?.pays || clientErrors.pays) ? "border-2 border-red-500" : "border border-[#F6F2E7]"}` 
+                        : (state?.errors?.pays || clientErrors.pays)
+                        ? "text-black border-2 border-red-500"
+                        : "text-black border border-[#F6F2E7]"
                     }`}
                   >
                     <span>
@@ -776,6 +804,11 @@ export default function ContactForm({
                     </div>
                   )}
                 </div>
+                {isPaysFocused && (
+                  <p className="mt-1 text-xs text-gray-500">
+                    Sélectionnez votre pays dans la liste
+                  </p>
+                )}
                 {(state?.errors?.pays || clientErrors.pays) && (
                   <p className="mt-1 text-sm text-red-600">
                     {state?.errors?.pays || clientErrors.pays}
@@ -954,7 +987,7 @@ export default function ContactForm({
             {/* Votre priorité actuelle Section */}
             <div>
               <h3 className="section-text-small font-bold text-primary mb-4">
-                Votre priorité actuelle
+                Votre priorité actuelle<span className="text-red-600">*</span>
               </h3>
               {/* Hidden inputs for form submission */}
               {priorities.map((priority) => (
@@ -979,6 +1012,8 @@ export default function ContactForm({
                         setPriorities(priorities.filter((p) => p !== "fiabiliser-donnees"));
                       }
                     }}
+                    onFocus={() => setIsPrioritiesFocused(true)}
+                    onBlur={() => setIsPrioritiesFocused(false)}
                     className="w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary"
                   />
                   <span className="text-gray-700">Fiabiliser nos données</span>
@@ -996,6 +1031,8 @@ export default function ContactForm({
                         setPriorities(priorities.filter((p) => p !== "securiser-revenus"));
                       }
                     }}
+                    onFocus={() => setIsPrioritiesFocused(true)}
+                    onBlur={() => setIsPrioritiesFocused(false)}
                     className="w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary"
                   />
                   <span className="text-gray-700">Sécuriser nos revenus</span>
@@ -1013,6 +1050,8 @@ export default function ContactForm({
                         setPriorities(priorities.filter((p) => p !== "optimiser-processus"));
                       }
                     }}
+                    onFocus={() => setIsPrioritiesFocused(true)}
+                    onBlur={() => setIsPrioritiesFocused(false)}
                     className="w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary"
                   />
                   <span className="text-gray-700">Optimiser nos processus</span>
@@ -1030,6 +1069,8 @@ export default function ContactForm({
                         setPriorities(priorities.filter((p) => p !== "mieux-travailler"));
                       }
                     }}
+                    onFocus={() => setIsPrioritiesFocused(true)}
+                    onBlur={() => setIsPrioritiesFocused(false)}
                     className="w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary"
                   />
                   <span className="text-gray-700">
@@ -1050,6 +1091,8 @@ export default function ContactForm({
                           setPriorities(priorities.filter((p) => p !== "autre"));
                         }
                       }}
+                      onFocus={() => setIsPrioritiesFocused(true)}
+                      onBlur={() => setIsPrioritiesFocused(false)}
                       className="w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary"
                     />
                     <span className="text-gray-700">Autre</span>
@@ -1061,11 +1104,18 @@ export default function ContactForm({
                     onChange={(e) =>
                       setFormValues({ ...formValues, autre: e.target.value })
                     }
+                    onFocus={() => setIsPrioritiesFocused(true)}
+                    onBlur={() => setIsPrioritiesFocused(false)}
                     className="flex-1 text-black px-3 py-2 bg-[#F6F2E7] border border-[#F6F2E7] rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors text-sm"
                     placeholder=""
                   />
                 </div>
               </div>
+              {isPrioritiesFocused && (
+                <p className="mt-2 text-xs text-gray-500">
+                  Sélectionnez au moins une priorité
+                </p>
+              )}
               {state?.errors?.priorities && (
                 <p className="mt-2 text-sm text-red-600">
                   {state.errors.priorities}
