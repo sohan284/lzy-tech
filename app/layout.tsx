@@ -46,11 +46,6 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  icons: {
-    icon: "/assets/redLogo.png",
-    shortcut: "/assets/redLogo.png",
-    apple: "/assets/redLogo.png",
-  },
   manifest: "/manifest.json",
   openGraph: {
     type: "website",

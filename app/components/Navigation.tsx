@@ -69,6 +69,7 @@ export default function Navigation() {
             href="/"
             className="flex items-center gap-2 hover:opacity-80 transition-opacity"
           >
+            
             <Image src={logo} alt="Logo" className="w-10 h-10" />
             <span className="text-white lg:text-xl font-semibold">
               IzyTechnology

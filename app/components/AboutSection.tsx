@@ -20,7 +20,7 @@ export default function AboutSection() {
         className="w-full col-span-7 bg-[#DAEAF6] flex items-center px-8"
         initial={{ x: -50, opacity: 0 }}
         animate={isInView ? { x: 0, opacity: 1 } : {}}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
       >
         <div className="xl:max-w-[740px] ml-auto">
           {/* Main Headline */}
@@ -28,7 +28,7 @@ export default function AboutSection() {
             className="section-title text-primary mb-8 text-left"
             initial={{ y: 30, opacity: 0 }}
             animate={isInView ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+            transition={{ duration: 0.4, delay: 0.15, ease: "easeOut" }}
           >
             Depuis l&apos;Afrique, avec la rigueur des standards internationaux
           </motion.h2>
@@ -38,7 +38,7 @@ export default function AboutSection() {
             className="section-text text-black mb-6 text-left"
             initial={{ y: 20, opacity: 0 }}
             animate={isInView ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
           >
             Nous opérons depuis Abidjan, au plus près des réalités de nos
             clients.
@@ -49,7 +49,7 @@ export default function AboutSection() {
             className="section-text text-black text-left"
             initial={{ y: 20, opacity: 0 }}
             animate={isInView ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+            transition={{ duration: 0.4, delay: 0.25, ease: "easeOut" }}
           >
             Cette position nous permet de conjuguer une compréhension fine des
             contraintes locales avec des exigences élevées en matière de
@@ -63,7 +63,7 @@ export default function AboutSection() {
         className="w-full col-span-5 relative bg-cover bg-center bg-no-repeat flex items-center justify-center"
         initial={{ x: 50, opacity: 0 }}
         animate={isInView ? { x: 0, opacity: 1 } : {}}
-        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+        transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
       >
         <Image
           src={backgroundImage}

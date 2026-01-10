@@ -49,7 +49,7 @@ export default function NoticeHeroSection({
               duration: 6,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: 1,
+              delay: 0.3,
             }}
           />
           <motion.div
@@ -62,7 +62,7 @@ export default function NoticeHeroSection({
               duration: 7,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: 0.5,
+              delay: 0.2,
             }}
           />
         </div>
@@ -86,7 +86,7 @@ export default function NoticeHeroSection({
             className="hero-title text-white mb-6 text-center"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
           >
             {title}
           </motion.h1>

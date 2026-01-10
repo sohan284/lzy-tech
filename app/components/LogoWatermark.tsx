@@ -76,7 +76,7 @@ export default function LogoWatermark({
         className={containerClasses}
         initial={{ opacity: initialOpacity ?? opacityValue, scale: 0.8 }}
         animate={{ opacity: opacityValue, scale: 1 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
+        transition={{ duration: 0.75, ease: "easeOut" }}
       >
         {imageElement}
       </motion.div>

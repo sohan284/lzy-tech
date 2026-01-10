@@ -21,7 +21,7 @@ export default function ClientsSection() {
           className="mb-12 text-center max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
         >
           <h2 style={{ textAlign: "center" }} className="section-title text-[#002FA7] mb-6">
             Avec qui nous travaillons
@@ -37,7 +37,7 @@ export default function ClientsSection() {
             className="px-8 lg:py-5 py-3 bg-red-600 text-white cursor-pointer font-semibold hover:bg-red-700 transition-all duration-300 rounded-lg text-lg flex items-center gap-2 mx-auto hover:opacity-90"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+            transition={{ duration: 0.3, delay: 0.15, ease: "easeOut" }}
             onClick={() => {
               const link = document.createElement("a");
               link.href = "/assets/Plaquette IzyTechnology.pdf";
@@ -59,7 +59,7 @@ export default function ClientsSection() {
             className="relative w-full aspect-[4/3] mx-auto"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+            transition={{ duration: 0.4, delay: 0.15, ease: "easeOut" }}
           >
             <Image
               src={backgroundImage}
@@ -73,14 +73,13 @@ export default function ClientsSection() {
               className="absolute top-0 -left-6 md:left-12 xl:left-16 sm:left-8 flex flex-col items-start"
               initial={{ opacity: 0, x: -30, y: -30 }}
               animate={isInView ? { opacity: 1, x: 0, y: 0 } : {}}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
             >
               <div className="flex flex-col items-end">
                 <motion.div
                   className="rounded-full bg-[#002FA7] flex items-center justify-center mb-4"
                   style={{ width: "clamp(48px, 5vw, 64px)", height: "clamp(48px, 5vw, 64px)" }}
-                  whileHover={{ scale: 1.1, rotate: 360 }}
-                  transition={{ duration: 0.5 }}
+                 
                 >
                   <svg
                     className="text-white"
@@ -132,14 +131,13 @@ export default function ClientsSection() {
                 className="absolute bottom-0 -left-14 sm:-left-2 md:left-3 flex flex-col items-start"
               initial={{ opacity: 0, x: -30, y: 30 }}
               animate={isInView ? { opacity: 1, x: 0, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+              transition={{ duration: 0.3, delay: 0.1, ease: "easeOut" }}
             >
               <div className="flex flex-col items-end">
                 <motion.div
                   className="rounded-full bg-[#002FA7] flex items-center justify-center mb-4"
                   style={{ width: "clamp(48px, 5vw, 64px)", height: "clamp(48px, 5vw, 64px)" }}
-                  whileHover={{ scale: 1.1, rotate: 360 }}
-                  transition={{ duration: 0.5 }}
+                
                 >
                   <svg
                     className="text-white"
@@ -173,14 +171,13 @@ export default function ClientsSection() {
               className="absolute top-0 -right-14 md:right-0 flex flex-col items-start"
               initial={{ opacity: 0, x: 30, y: -30 }}
               animate={isInView ? { opacity: 1, x: 0, y: 0 } : {}}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
             >
               <div className="flex flex-col items-start text-left">
                 <motion.div
                   className="rounded-full bg-[#002FA7] flex items-center justify-center mb-4"
-                  style={{ width: "clamp(48px, 5vw, 64px)", height: "clamp(48px, 5vw, 64px)" }}
-                  whileHover={{ scale: 1.1, rotate: 360 }}
-                  transition={{ duration: 0.5 }}
+                    style={{ width: "clamp(48px, 5vw, 64px)", height: "clamp(48px, 5vw, 64px)" }}
+                   
                 >
                   <svg
                     className="text-white"
@@ -212,14 +209,12 @@ export default function ClientsSection() {
               className="absolute bottom-0 -right-14 sm:right-0 md:right-8 flex flex-col items-start"
               initial={{ opacity: 0, x: 30, y: 30 }}
               animate={isInView ? { opacity: 1, x: 0, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+              transition={{ duration: 0.3, delay: 0.1, ease: "easeOut" }}
             >
               <div className="flex flex-col items-start text-left">
                 <motion.div
                   className="rounded-full bg-[#002FA7] flex items-center justify-center mb-4"
-                  style={{ width: "clamp(48px, 5vw, 64px)", height: "clamp(48px, 5vw, 64px)" }}
-                  whileHover={{ scale: 1.1, rotate: 360 }}
-                  transition={{ duration: 0.5 }}
+                  style={{ width: "clamp(48px, 5vw, 64px)", height: "clamp(48px, 5vw, 64px)" }} 
                 >
                   <svg
                     className="text-white"

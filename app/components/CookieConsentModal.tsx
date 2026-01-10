@@ -116,7 +116,7 @@ export default function CookieConsentModal() {
                   contenus. Aucun cookie publicitaire n&apos;est utilisé. Vous
                   pouvez accepter ou refuser ces cookies.{" "}
                   <Link
-                    href="/privacy"
+                    href="/donnees-personnelles"
                     className="text-primary hover:underline font-medium"
                     onClick={(e) => {
                       e.stopPropagation();

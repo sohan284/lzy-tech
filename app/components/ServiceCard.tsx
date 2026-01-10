@@ -27,18 +27,17 @@ export default function ServiceCard({
       className={`group relative rounded-lg p-8 lg:p-10 transition-all duration-300 cursor-pointer flex flex-col text-left overflow-hidden border border-gray-200 ${
         isDownloadCard ? "bg-primary" : "bg-white"
       }`}
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 0 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
-      whileHover={{ y: -10, scale: 1.02 }}
+      transition={{ duration: 0.3, delay: index * 0.05, ease: "easeOut" }}
+   
     >
       {/* Background Image - Shows on hover (only for non-download cards) */}
       {!isDownloadCard && (
         <motion.div
           className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"
           initial={{ scale: 1.1 }}
-          whileHover={{ scale: 1 }}
         >
           <Image
             src={backgroundImage}
@@ -58,11 +57,9 @@ export default function ServiceCard({
         {/* Icon */}
         <motion.div
           className="mb-6"
-          whileHover={{ scale: 1.1, rotate: 5 }}
-          transition={{ duration: 0.3 }}
         >
           <div
-            className={`transition-colors duration-300 ${
+            className={`text-center transition-colors duration-300 ${
               isDownloadCard
                 ? "text-white"
                 : "text-primary group-hover:text-white"
@@ -74,7 +71,7 @@ export default function ServiceCard({
 
         {/* Title */}
         <h3
-          className={`text-2xl font-bold mb-4 transition-colors duration-300 ${
+          className={`text-2xl text-center font-bold mb-4 transition-colors duration-300 ${
             isDownloadCard
               ? "text-white"
               : "text-primary group-hover:text-white"
@@ -85,7 +82,7 @@ export default function ServiceCard({
 
         {/* Description */}
         <p
-          className={`text-base md:text-lg lg:text-xl leading-relaxed transition-colors duration-300 ${
+          className={`text-base text-center md:text-lg lg:text-xl leading-relaxed transition-colors duration-300 ${
             isDownloadCard
               ? "text-white/90"
               : "text-gray-600 group-hover:text-white"
@@ -95,6 +92,7 @@ export default function ServiceCard({
         </p>
 
         {/* Download Button for last card */}
+        <div className="text-center"> 
         {isDownloadCard && (
           <motion.button
             className="mt-6 px-6 py-3 bg-white text-primary font-semibold rounded border-2 border-white hover:bg-transparent hover:text-white transition-all duration-300 relative z-20 hover:opacity-90 cursor-pointer"
@@ -110,6 +108,9 @@ export default function ServiceCard({
             Téléchargez maintenant
           </motion.button>
         )}
+
+        </div>
+     
       </div>
     </motion.div>
   );
