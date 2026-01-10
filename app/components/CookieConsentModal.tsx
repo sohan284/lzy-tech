@@ -34,6 +34,21 @@ export default function CookieConsentModal() {
     return () => clearTimeout(timer);
   }, []);
 
+  // Disable body scroll when modal is open
+  useEffect(() => {
+    if (showModal) {
+      // Store the original overflow value
+      const originalOverflow = document.body.style.overflow;
+      // Disable scroll
+      document.body.style.overflow = "hidden";
+      
+      return () => {
+        // Restore original overflow value when modal closes
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [showModal]);
+
   const handleAccept = () => {
     localStorage.setItem("cookieConsent", "accepted");
     localStorage.setItem("cookieConsentDate", new Date().toISOString());
