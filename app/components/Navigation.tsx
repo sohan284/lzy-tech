@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "@/public/assets/redLogo.png";
+import logo from "@/public/assets/logo.png";
 import Image from "next/image";
 
 export default function Navigation() {
@@ -61,7 +61,7 @@ export default function Navigation() {
           isAtTop ? "bg-transparent" : "bg-primary/50 backdrop-blur-sm"
         }`}
         initial={{ y: 0 }}
-        animate={{ y: isVisible ? 0 : -100 }}
+        animate={{ y: isVisible ? 0 : -120 }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
         <div className="flex items-center justify-between px-8 lg:px-16 py-6 max-w-[1440px] mx-auto">
@@ -70,10 +70,7 @@ export default function Navigation() {
             className="flex items-center gap-2 hover:opacity-80 transition-opacity"
           >
             
-            <Image src={logo} alt="Logo" className="w-10 h-10" />
-            <span className="text-white lg:text-xl font-semibold">
-              IzyTechnology
-            </span>
+            <Image src={logo} alt="Logo" className="w-[160px] h-16" />
           </Link>
 
           {/* Desktop Navigation */}
