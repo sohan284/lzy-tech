@@ -84,7 +84,43 @@ export default function ClientsSection() {
                 </h3>
               </div>
             </motion.div>
-
+    {/* Top Right - Entreprises industrielles */}
+    <motion.div
+              className=" flex justify-start"
+              initial={{ opacity: 0, x: 30, y: -30 }}
+              animate={isInView ? { opacity: 1, x: 0, y: 0 } : {}}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            >
+              <div className="flex items-center gap-4">
+                <motion.div
+                  className="rounded-full bg-[#002FA7] flex items-center justify-center "
+                    style={{ width: "clamp(48px, 5vw, 64px)", height: "clamp(48px, 5vw, 64px)" }}
+                   
+                >
+                  <svg
+                    className="text-white"
+                    style={{ width: "clamp(24px, 2.5vw, 32px)", height: "clamp(24px, 2.5vw, 32px)" }}
+                    width="36"
+                    height="36"
+                    viewBox="0 0 36 36"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M36 12.5643V8.26282L18.9049 1.5498L1.80914 8.26282V12.5643L4.72219 11.4203V13.8243H5.77688V11.0425L18.9049 5.85103L32.0323 11.0425V25.9312H27.9823V14.3282H9.82758V25.9312H8.51906V18.4661H5.77688V14.8555H4.72219V18.4661H0V34.4502H35.4537V31.7305H34.399V33.3955H27.9893V26.9858H30.6668V28.461H31.7215V26.9858H34.399V30.6541H35.4537V25.9312H33.087V11.4202L36 12.5643ZM10.8823 25.9311V24.8644H26.9276V26.9682H15.9841V25.9311H10.8823ZM26.9276 20.6507H10.8823V18.5469H26.9276V20.6507ZM26.9276 21.7054V23.8098H10.8823V21.7054H26.9276ZM15.9841 28.0229H26.9276V30.1267H15.9841V28.0229ZM26.9276 15.3829V17.4923H10.8823V15.3829H26.9276ZM1.05469 19.5207H3.73219V21.178H4.78688V19.5207H7.46438V25.9311H1.05469V19.5207ZM1.05469 33.3955V26.9858H3.73219V28.4609H4.78688V26.9858H7.46438V33.3955H1.05469ZM8.51906 33.3955V26.9858H11.1973V28.4609H12.252V26.9858H14.9295V33.3955H8.51906ZM15.9841 33.3955V31.1814H26.9276V33.3955H15.9841ZM2.86383 8.98177L18.9049 2.68289L34.9453 8.98177V11.017L18.9049 4.71675L2.86383 11.017V8.98177Z"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M21.0214 10.9575H22.0761V12.0122H21.0214V10.9575ZM18.3776 10.9575H19.4323V12.0122H18.3776V10.9575ZM15.7339 10.9575H16.7886V12.0122H15.7339V10.9575Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </motion.div>
+                <h3 className=" font-semibold text-black" style={{ fontSize: "clamp(12px, 1.5vw, 20px)" }}>
+                  Entreprises industrielles
+                </h3>
+              </div>
+            </motion.div>
             {/* Bottom Left - Acteurs de services */}
             <motion.div
                 className="flex justify-start"
@@ -124,43 +160,7 @@ export default function ClientsSection() {
               </div>
             </motion.div>
 
-            {/* Top Right - Entreprises industrielles */}
-            <motion.div
-              className=" flex justify-start"
-              initial={{ opacity: 0, x: 30, y: -30 }}
-              animate={isInView ? { opacity: 1, x: 0, y: 0 } : {}}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-            >
-              <div className="flex items-center gap-4">
-                <motion.div
-                  className="rounded-full bg-[#002FA7] flex items-center justify-center "
-                    style={{ width: "clamp(48px, 5vw, 64px)", height: "clamp(48px, 5vw, 64px)" }}
-                   
-                >
-                  <svg
-                    className="text-white"
-                    style={{ width: "clamp(24px, 2.5vw, 32px)", height: "clamp(24px, 2.5vw, 32px)" }}
-                    width="36"
-                    height="36"
-                    viewBox="0 0 36 36"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M36 12.5643V8.26282L18.9049 1.5498L1.80914 8.26282V12.5643L4.72219 11.4203V13.8243H5.77688V11.0425L18.9049 5.85103L32.0323 11.0425V25.9312H27.9823V14.3282H9.82758V25.9312H8.51906V18.4661H5.77688V14.8555H4.72219V18.4661H0V34.4502H35.4537V31.7305H34.399V33.3955H27.9893V26.9858H30.6668V28.461H31.7215V26.9858H34.399V30.6541H35.4537V25.9312H33.087V11.4202L36 12.5643ZM10.8823 25.9311V24.8644H26.9276V26.9682H15.9841V25.9311H10.8823ZM26.9276 20.6507H10.8823V18.5469H26.9276V20.6507ZM26.9276 21.7054V23.8098H10.8823V21.7054H26.9276ZM15.9841 28.0229H26.9276V30.1267H15.9841V28.0229ZM26.9276 15.3829V17.4923H10.8823V15.3829H26.9276ZM1.05469 19.5207H3.73219V21.178H4.78688V19.5207H7.46438V25.9311H1.05469V19.5207ZM1.05469 33.3955V26.9858H3.73219V28.4609H4.78688V26.9858H7.46438V33.3955H1.05469ZM8.51906 33.3955V26.9858H11.1973V28.4609H12.252V26.9858H14.9295V33.3955H8.51906ZM15.9841 33.3955V31.1814H26.9276V33.3955H15.9841ZM2.86383 8.98177L18.9049 2.68289L34.9453 8.98177V11.017L18.9049 4.71675L2.86383 11.017V8.98177Z"
-                      fill="currentColor"
-                    />
-                    <path
-                      d="M21.0214 10.9575H22.0761V12.0122H21.0214V10.9575ZM18.3776 10.9575H19.4323V12.0122H18.3776V10.9575ZM15.7339 10.9575H16.7886V12.0122H15.7339V10.9575Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </motion.div>
-                <h3 className=" font-semibold text-black" style={{ fontSize: "clamp(12px, 1.5vw, 20px)" }}>
-                  Entreprises industrielles
-                </h3>
-              </div>
-            </motion.div>
+        
 
             {/* Bottom Right - Organismes publics */}
             <motion.div
