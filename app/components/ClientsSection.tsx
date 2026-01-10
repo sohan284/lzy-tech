@@ -27,7 +27,7 @@ export default function ClientsSection() {
             Avec qui nous travaillons
           </h2>
          <div className="flex justify-center">
-         <motion.div className=" grid gap-4 mb-5 md:my-10 ">
+         <motion.div className=" grid gap-4 my-5 md:my-10 ">
           <motion.div
               className="flex  justify-start"
               initial={{ opacity: 0, x: -30, y: -30 }}
