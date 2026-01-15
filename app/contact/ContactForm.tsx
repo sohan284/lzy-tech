@@ -406,7 +406,6 @@ function SubmitButton() {
       className="w-full px-8 py-4 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed hover:opacity-90 cursor-pointer"
     >
       {pending ? "Envoi en cours..." : "Envoyer"}
-      
     </motion.button>
   );
 }
@@ -437,7 +436,7 @@ export default function ContactForm({
   // Phone number state - split into country code and number
   const [selectedPhoneCode, setSelectedPhoneCode] = useState<string>("+225");
   const [phoneNumber, setPhoneNumber] = useState("");
-  
+
   // Form field values state to preserve on errors
   const [formValues, setFormValues] = useState({
     prenom: "",
@@ -448,10 +447,10 @@ export default function ContactForm({
     autre: "",
     consent: false,
   });
-  
+
   // Priorities state
   const [priorities, setPriorities] = useState<string[]>([]);
-  
+
   // Client-side validation errors
   const [clientErrors, setClientErrors] = useState<{
     pays?: string;
@@ -472,6 +471,14 @@ export default function ContactForm({
   const [phoneCodeSearchQuery, setPhoneCodeSearchQuery] = useState("");
   const phoneCodeDropdownRef = useRef<HTMLDivElement>(null);
 
+  // Function to normalize strings by removing accents
+  const normalizeString = (str: string): string => {
+    return str
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
+  };
+
   // Create list of country codes with country names for phone code dropdown
   const countryCodesList = countries
     .map((country) => ({
@@ -488,13 +495,14 @@ export default function ContactForm({
   // Filter country codes based on search
   const filteredCountryCodes = countryCodesList.filter(
     (item) =>
-      item.name.toLowerCase().includes(phoneCodeSearchQuery.toLowerCase()) ||
-      item.phoneCode.includes(phoneCodeSearchQuery)
+      normalizeString(item.name).includes(
+        normalizeString(phoneCodeSearchQuery)
+      ) || item.phoneCode.includes(phoneCodeSearchQuery)
   );
 
   // Filter countries based on search
   const filteredCountries = countries.filter((country) =>
-    country.name.toLowerCase().includes(searchQuery.toLowerCase())
+    normalizeString(country.name).includes(normalizeString(searchQuery))
   );
 
   // Clear form on successful submission
@@ -552,7 +560,7 @@ export default function ContactForm({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isCountryOpen, isPhoneCodeOpen]);
-  
+
   // Validate Ivorian phone number (10 digits)
   const validatePhoneNumber = (code: string, number: string): string | null => {
     if (code === "+225") {
@@ -569,7 +577,7 @@ export default function ContactForm({
       {/* Left Side - Form */}
       <div className="bg-white p-8 lg:p-12 xl:p-16 flex items-center ">
         <div className="w-full max-w-2xl mx-auto">
-            <motion.form
+          <motion.form
             action={formAction}
             className="space-y-8"
             initial={{ opacity: 0, x: -50 }}
@@ -578,17 +586,20 @@ export default function ContactForm({
             onSubmit={(e) => {
               // Clear previous client errors
               setClientErrors({});
-              
+
               // Client-side validation for country
               if (!selectedCountry || !selectedCountry.code) {
                 e.preventDefault();
                 setClientErrors({ pays: "Le pays est requis" });
                 return false;
               }
-              
+
               // Client-side validation for Ivorian phone numbers
               if (selectedPhoneCode === "+225") {
-                const phoneError = validatePhoneNumber(selectedPhoneCode, phoneNumber);
+                const phoneError = validatePhoneNumber(
+                  selectedPhoneCode,
+                  phoneNumber
+                );
                 if (phoneError) {
                   e.preventDefault();
                   setClientErrors({ phone: phoneError });
@@ -679,7 +690,10 @@ export default function ContactForm({
                   required
                   value={formValues.organisation}
                   onChange={(e) =>
-                    setFormValues({ ...formValues, organisation: e.target.value })
+                    setFormValues({
+                      ...formValues,
+                      organisation: e.target.value,
+                    })
                   }
                   onFocus={() => setIsOrganisationFocused(true)}
                   onBlur={() => setIsOrganisationFocused(false)}
@@ -720,9 +734,13 @@ export default function ContactForm({
                     onFocus={() => setIsPaysFocused(true)}
                     onBlur={() => setIsPaysFocused(false)}
                     className={`w-full text-left text-black px-4 py-3 bg-[#F6F2E7] rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors flex items-center justify-between ${
-                      !selectedCountry 
-                        ? `text-gray-500 ${(state?.errors?.pays || clientErrors.pays) ? "border-2 border-red-500" : "border border-[#F6F2E7]"}` 
-                        : (state?.errors?.pays || clientErrors.pays)
+                      !selectedCountry
+                        ? `text-gray-500 ${
+                            state?.errors?.pays || clientErrors.pays
+                              ? "border-2 border-red-500"
+                              : "border border-[#F6F2E7]"
+                          }`
+                        : state?.errors?.pays || clientErrors.pays
                         ? "text-black border-2 border-red-500"
                         : "text-black border border-[#F6F2E7]"
                     }`}
@@ -1009,7 +1027,9 @@ export default function ContactForm({
                       if (e.target.checked) {
                         setPriorities([...priorities, "fiabiliser-donnees"]);
                       } else {
-                        setPriorities(priorities.filter((p) => p !== "fiabiliser-donnees"));
+                        setPriorities(
+                          priorities.filter((p) => p !== "fiabiliser-donnees")
+                        );
                       }
                     }}
                     onFocus={() => setIsPrioritiesFocused(true)}
@@ -1028,7 +1048,9 @@ export default function ContactForm({
                       if (e.target.checked) {
                         setPriorities([...priorities, "securiser-revenus"]);
                       } else {
-                        setPriorities(priorities.filter((p) => p !== "securiser-revenus"));
+                        setPriorities(
+                          priorities.filter((p) => p !== "securiser-revenus")
+                        );
                       }
                     }}
                     onFocus={() => setIsPrioritiesFocused(true)}
@@ -1047,7 +1069,9 @@ export default function ContactForm({
                       if (e.target.checked) {
                         setPriorities([...priorities, "optimiser-processus"]);
                       } else {
-                        setPriorities(priorities.filter((p) => p !== "optimiser-processus"));
+                        setPriorities(
+                          priorities.filter((p) => p !== "optimiser-processus")
+                        );
                       }
                     }}
                     onFocus={() => setIsPrioritiesFocused(true)}
@@ -1066,7 +1090,9 @@ export default function ContactForm({
                       if (e.target.checked) {
                         setPriorities([...priorities, "mieux-travailler"]);
                       } else {
-                        setPriorities(priorities.filter((p) => p !== "mieux-travailler"));
+                        setPriorities(
+                          priorities.filter((p) => p !== "mieux-travailler")
+                        );
                       }
                     }}
                     onFocus={() => setIsPrioritiesFocused(true)}
@@ -1088,7 +1114,9 @@ export default function ContactForm({
                         if (e.target.checked) {
                           setPriorities([...priorities, "autre"]);
                         } else {
-                          setPriorities(priorities.filter((p) => p !== "autre"));
+                          setPriorities(
+                            priorities.filter((p) => p !== "autre")
+                          );
                         }
                       }}
                       onFocus={() => setIsPrioritiesFocused(true)}
@@ -1143,7 +1171,7 @@ export default function ContactForm({
                 </p>
               )}
             </div>
-            
+
             {/* Consent Checkbox */}
             <div>
               <label className="flex items-start gap-3 cursor-pointer">
@@ -1158,15 +1186,19 @@ export default function ContactForm({
                   className="w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary mt-0.5 shrink-0"
                 />
                 <span className="text-gray-700 text-sm">
-                  J&apos;accepte qu&apos;IzyTechnology collecte mes données personnelles pour répondre à ma demande et pour m&apos;adresser des sollicitations commerciales selon mon profil. <span
-                   className="text-primary underline cursor-pointer"
-                   onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    router.push("/donnees-personnelles");
-                  }}
+                  J&apos;accepte qu&apos;IzyTechnology collecte mes données
+                  personnelles pour répondre à ma demande et pour
+                  m&apos;adresser des sollicitations commerciales selon mon
+                  profil.{" "}
+                  <span
+                    className="text-primary underline cursor-pointer"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      router.push("/donnees-personnelles");
+                    }}
                   >
-                  En savoir plus sur le traitement de données et vos droits.
+                    En savoir plus sur le traitement de données et vos droits.
                   </span>
                 </span>
               </label>

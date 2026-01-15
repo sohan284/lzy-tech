@@ -25,10 +25,10 @@ export default function CTASection() {
           className="object-cover object-[80%_center] lg:object-center"
         />
         {/* Dark blue overlay with pattern */}
-        <div className="absolute inset-0 bg-[#002FA7] opacity-90 lg:opacity-50"></div>
+        <div className="absolute inset-0 bg-[#002FA7] opacity-90 lg:opacity-70"></div>
         {/* Responsive blue overlay shape */}
         <motion.div
-          className="absolute hidden lg:block w-[85vw] md:w-[80vw] lg:w-[85vw] xl:w-[75vw] h-full -left-20 md:-left-32 lg:-left-40 bg-white/70 z-20 rounded-br-[60%] md:rounded-br-[70%] lg:rounded-br-[75%] 2xl:rounded-br-[80%] overflow-hidden"
+          className="absolute hidden lg:block w-[85vw] md:w-[80vw] lg:w-[85vw] xl:w-[75vw] h-full -left-20 md:-left-32 lg:-left-40 bg-white/80 z-20 rounded-br-[60%] md:rounded-br-[70%] lg:rounded-br-[75%] 2xl:rounded-br-[80%] overflow-hidden"
           initial={{ x: -200 }}
           animate={isInView ? { x: 0 } : {}}
           transition={{ duration: 0.5, ease: "easeOut" }}
@@ -36,7 +36,6 @@ export default function CTASection() {
           {/* Logo Watermark */}
           <LogoWatermark opacity={20} />
         </motion.div>
-       
       </div>
 
       {/* Content */}
@@ -75,7 +74,6 @@ export default function CTASection() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
           >
-
             <motion.div
               className="space-y-4 mb-6"
               initial="hidden"
@@ -139,7 +137,8 @@ export default function CTASection() {
                   <span className="whitespace-nowrap">
                     Prenez contact maintenant
                   </span>
-                </motion.button>ƒ
+                </motion.button>
+                ƒ
               </Link>
             </motion.div>
           </motion.div>

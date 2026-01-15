@@ -20,12 +20,18 @@ export default function PartnershipSection() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.4, ease: "easeOut" }}
         >
-          <h2 style={{ textAlign: "center" }} className="section-title text-primary mb-4">
+          <h2
+            style={{ textAlign: "center" }}
+            className="section-title text-primary mb-4"
+          >
             Plus qu&apos;un conseil,
             <br />
             un partenaire de vérité.
           </h2>
-          <p style={{ textAlign: "center" }} className="section-text font-bold text-gray-600 italic max-w-2xl mx-auto">
+          <p
+            style={{ textAlign: "center" }}
+            className="section-text font-bold text-gray-600 italic max-w-2xl mx-auto"
+          >
             &quot;Notre croissance repose sur une règle d&apos;or : nous ne
             vendons pas du temps, nous vendons de l&apos;impact.&quot;
           </p>
@@ -91,8 +97,8 @@ export default function PartnershipSection() {
               },
             }}
           >
-            {/* Vertical line connecting the numbers - stops at center of third circle */}
-            <div className="absolute left-6 top-6 w-0.5 bg-primary/30 h-[calc(100%-12rem)]"></div>
+            {/* Vertical line connecting the numbers - extends to end of third paragraph */}
+            <div className="absolute left-6 top-6 w-0.5 bg-primary/30 -bottom-8"></div>
             {/* Card 1 - L'Honnêteté Radicale */}
             <motion.div
               className="flex gap-6"
@@ -103,10 +109,7 @@ export default function PartnershipSection() {
               transition={{ duration: 0.3, ease: "easeOut" }}
             >
               <div className="flex flex-col items-center flex-shrink-0 relative z-10">
-                <motion.div
-                  className="w-12 h-12 rounded-full bg-white text-primary border-2 border-primary flex items-center justify-center font-bold"
-                 
-                >
+                <motion.div className="w-12 h-12 rounded-full bg-white text-primary border-2 border-primary flex items-center justify-center font-bold">
                   01
                 </motion.div>
               </div>
@@ -134,13 +137,9 @@ export default function PartnershipSection() {
                 visible: { opacity: 1, x: 0 },
               }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-           
             >
               <div className="flex flex-col items-center flex-shrink-0 relative z-10">
-                <motion.div
-                  className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold"
-                
-                >
+                <motion.div className="w-12 h-12 rounded-full bg-white text-primary border-2 border-primary flex items-center justify-center font-bold">
                   02
                 </motion.div>
               </div>
@@ -168,13 +167,9 @@ export default function PartnershipSection() {
                 visible: { opacity: 1, x: 0 },
               }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-       
             >
               <div className="flex flex-col items-center flex-shrink-0 relative z-10">
-                <motion.div
-                  className="w-12 h-12 rounded-full bg-white text-primary border-2 border-primary flex items-center justify-center font-bold"
-                
-                >
+                <motion.div className="w-12 h-12 rounded-full bg-white text-primary border-2 border-primary flex items-center justify-center font-bold">
                   03
                 </motion.div>
               </div>

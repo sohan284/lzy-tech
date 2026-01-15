@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import logo from "@/public/assets/whiteLogo.png";
+import logo from "@/public/assets/logo.png";
 import LogoWatermark from "./LogoWatermark";
 export default function Footer() {
   const pathname = usePathname();
@@ -25,9 +25,8 @@ export default function Footer() {
               className="flex items-center flex-col gap-2 hover:opacity-80 transition-opacity"
             >
               <div className="relative">
-                <Image src={logo} alt="Logo" className="w-10 h-10" />
+                <Image src={logo} alt="Logo" className="w-[160px] h-16" />
               </div>
-              <span className="text-2xl font-bold">IzyTechnology</span>
             </Link>
             {/* <p className="text-xs  text-right font-mono -mt-1">simplement efficace</p> */}
           </div>
@@ -55,9 +54,7 @@ export default function Footer() {
           </p>
           <div className="flex flex-wrap items-center gap-4 justify-center lg:justify-end">
             {isPrivacyPage ? (
-              <span className="text-white/80 underline">
-                Mentions légales
-              </span>
+              <span className="text-white/80 underline">Mentions légales</span>
             ) : (
               <Link
                 href="/privacy"
