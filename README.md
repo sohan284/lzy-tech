@@ -1,53 +1,230 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# IzyTechnology Website - Technical Documentation
 
-## Getting Started
+## Technologies Used and Versions
 
-First, run the development server:
+### Core Framework
+- **Next.js**: 16.1.1
+- **React**: 19.2.3
+- **React DOM**: 19.2.3
+- **TypeScript**: ^5
 
+### Styling & UI
+- **Tailwind CSS**: ^4
+- **Framer Motion**: ^12.23.26 (for animations)
+- **React Icons**: ^5.5.0
+
+### Form & Validation
+- **Zod**: ^4.3.5 (for form validation)
+- **Nodemailer**: ^7.0.12 (for email sending via SMTP)
+
+### Development Tools
+- **ESLint**: ^9
+- **Node.js**: ^20 (recommended)
+
+## Project Structure
+
+```
+lzy-tech/
+├── app/
+│   ├── actions/
+│   │   └── contact.ts          # Contact form server action
+│   ├── components/             # React components
+│   ├── contact/                # Contact page
+│   ├── privacy/                # Privacy policy page
+│   ├── donnees-personnelles/   # Data protection page
+│   ├── layout.tsx              # Root layout
+│   ├── page.tsx                # Home page
+│   ├── globals.css             # Global styles
+│   ├── robots.ts               # Robots.txt configuration
+│   └── sitemap.ts              # Sitemap generation
+├── public/
+│   └── assets/                 # Images and PDF files
+├── .env.local                  # Environment variables (not in git)
+├── package.json                # Dependencies
+└── README.md                   # This file
+```
+
+## Building and Deploying the Project
+
+### Prerequisites
+- Node.js 20 or higher
+- npm, yarn, pnpm, or bun
+
+### Installation
+
+1. **Install dependencies:**
+   ```bash
+   npm install
+   # or
+   yarn install
+   # or
+   pnpm install
+   ```
+
+2. **Create environment file:**
+   Create a `.env.local` file in the root directory with the following variables:
+   ```env
+   # SMTP Configuration (REQUIRED for contact form)
+   SMTP_USER=your-email@gmail.com
+   SMTP_PASSWORD=your-gmail-app-password
+   
+   # Contact Email Recipient (optional - defaults to SMTP_USER)
+   CONTACT_EMAIL=contact@izytechnology.com
+   
+   # Site URL (for sitemap and canonical URLs)
+   NEXT_PUBLIC_SITE_URL=https://izytechnology.com
+   
+   # Google Analytics (optional)
+   NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
+   ```
+
+3. **Get Gmail App Password:**
+   - Go to Google Account > Security > 2-Step Verification
+   - Enable 2-Step Verification if not already enabled
+   - Go to App passwords
+   - Generate a new app password for "Mail"
+   - Use this password in `SMTP_PASSWORD`
+
+### Development
+
+Run the development server:
 ```bash
 npm run dev
 # or
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Building for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Email Setup (Contact Form)
-
-The contact form sends emails using Resend. To enable email functionality:
-
-1. Sign up for a free account at [Resend](https://resend.com)
-2. Get your API key from the [Resend Dashboard](https://resend.com/api-keys)
-3. Create a `.env.local` file in the root directory:
-   ```env
-   RESEND_API_KEY=re_your_api_key_here
+1. **Build the project:**
+   ```bash
+   npm run build
+   # or
+   yarn build
+   # or
+   pnpm build
    ```
-4. Restart your development server
 
-**Note:** The email will be sent to `sr.sohan088@gmail.com` when someone submits the contact form.
+2. **Start production server:**
+   ```bash
+   npm start
+   # or
+   yarn start
+   # or
+   pnpm start
+   ```
 
-## Deploy on Vercel
+### Deployment on Vercel (Recommended)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Push your code to GitHub/GitLab/Bitbucket**
 
-**Important for Production:** Make sure to add your `RESEND_API_KEY` to your Vercel environment variables in the project settings.
+2. **Import project to Vercel:**
+   - Go to [Vercel](https://vercel.com)
+   - Click "New Project"
+   - Import your repository
+   - Vercel will auto-detect Next.js settings
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# lzy-tech
+3. **Configure Environment Variables:**
+   - Go to Project Settings > Environment Variables
+   - Add all variables from `.env.local`:
+     - `SMTP_USER`
+     - `SMTP_PASSWORD`
+     - `CONTACT_EMAIL` (optional)
+     - `NEXT_PUBLIC_SITE_URL`
+     - `NEXT_PUBLIC_GA_ID` (optional)
+
+4. **Deploy:**
+   - Click "Deploy"
+   - Your site will be live at `https://your-project.vercel.app`
+
+### Alternative Deployment Options
+
+- **Netlify**: Similar to Vercel, supports Next.js out of the box
+- **Self-hosted**: Requires Node.js server and reverse proxy (nginx)
+
+## Form Configuration
+
+### Changing the Contact Form Recipient Address
+
+The contact form email recipient is configured in **`app/actions/contact.ts`** at line 210:
+
+```typescript
+const toEmail = process.env.CONTACT_EMAIL || fromEmail;
+```
+
+**To change the recipient email:**
+
+1. **Option 1 - Environment Variable (Recommended):**
+   - Add or update `CONTACT_EMAIL` in your `.env.local` file:
+     ```env
+     CONTACT_EMAIL=new-recipient@izytechnology.com
+     ```
+   - Restart the development server or redeploy
+
+2. **Option 2 - Direct Code Change:**
+   - Open `app/actions/contact.ts`
+   - Find line 210: `const toEmail = process.env.CONTACT_EMAIL || fromEmail;`
+   - Change to: `const toEmail = "new-recipient@izytechnology.com";`
+   - **Note:** This is not recommended as it requires code changes for updates
+
+### SMTP Configuration
+
+The contact form uses Gmail SMTP. To use a different email service:
+
+1. **Update `app/actions/contact.ts`** (lines 12-18):
+   ```typescript
+   const transporter = nodemailer.createTransport({
+     host: "smtp.your-provider.com",
+     port: 587,
+     secure: false,
+     auth: {
+       user: process.env.SMTP_USER,
+       pass: process.env.SMTP_PASSWORD,
+     },
+   });
+   ```
+
+2. **Update environment variables** in `.env.local` with your SMTP credentials
+
+## Additional Configuration
+
+### Site URL
+- Configured in `app/layout.tsx` (line 18) and `app/page.tsx` (line 11)
+- Set via `NEXT_PUBLIC_SITE_URL` environment variable
+- Used for sitemap, canonical URLs, and structured data
+
+### Google Analytics
+- Configured in `app/components/GoogleAnalytics.tsx`
+- Set via `NEXT_PUBLIC_GA_ID` environment variable
+- Optional - remove the component if not needed
+
+## Troubleshooting
+
+### Contact Form Not Sending Emails
+1. Verify `SMTP_USER` and `SMTP_PASSWORD` are set in `.env.local`
+2. Ensure Gmail App Password is correct (not regular password)
+3. Check that 2-Step Verification is enabled on Gmail account
+4. Verify environment variables are set in production (Vercel/Netlify)
+
+### Build Errors
+- Ensure all dependencies are installed: `npm install`
+- Check Node.js version (requires 20+)
+- Clear `.next` folder and rebuild: `rm -rf .next && npm run build`
+
+## Security Notes
+
+- Never commit `.env.local` to version control (already in `.gitignore`)
+- Use App Passwords for Gmail, not your regular password
+- In production, use environment variables, not hardcoded credentials
+- See `SECURITY_SETUP.md` for detailed security information
+
+## Support
+
+For technical questions or issues, refer to:
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [Framer Motion Documentation](https://www.framer.com/motion/)
