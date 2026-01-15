@@ -561,12 +561,24 @@ export default function ContactForm({
     };
   }, [isCountryOpen, isPhoneCodeOpen]);
 
-  // Validate Ivorian phone number (10 digits)
+  // Validate phone number
   const validatePhoneNumber = (code: string, number: string): string | null => {
+    const digitsOnly = number.replace(/\D/g, "");
+
+    // Check if phone number is empty
+    if (digitsOnly.length === 0) {
+      return "Le numéro de téléphone est requis";
+    }
+
     if (code === "+225") {
-      const digitsOnly = number.replace(/\D/g, "");
+      // Ivorian phone number must be exactly 10 digits
       if (digitsOnly.length !== 10) {
         return "Le numéro ivoirien doit contenir exactement 10 chiffres";
+      }
+    } else {
+      // Other countries must have at least 5 digits
+      if (digitsOnly.length < 5) {
+        return "Le numéro de téléphone doit contenir au moins 5 chiffres";
       }
     }
     return null;
@@ -594,17 +606,15 @@ export default function ContactForm({
                 return false;
               }
 
-              // Client-side validation for Ivorian phone numbers
-              if (selectedPhoneCode === "+225") {
-                const phoneError = validatePhoneNumber(
-                  selectedPhoneCode,
-                  phoneNumber
-                );
-                if (phoneError) {
-                  e.preventDefault();
-                  setClientErrors({ phone: phoneError });
-                  return false;
-                }
+              // Client-side validation for phone numbers
+              const phoneError = validatePhoneNumber(
+                selectedPhoneCode,
+                phoneNumber
+              );
+              if (phoneError) {
+                e.preventDefault();
+                setClientErrors({ phone: phoneError });
+                return false;
               }
             }}
           >

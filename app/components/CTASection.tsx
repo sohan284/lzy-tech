@@ -49,7 +49,8 @@ export default function CTASection() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.4, ease: "easeOut" }}
           >
-            Vous ne rentrez pas pas dans les cases ? Parlons-en.
+            Vous ne rentrez pas pas dans les cases ?{" "}
+            <span className="whitespace-nowrap">Parlons-en.</span>
           </motion.h2>
 
           {/* Mobile Image */}
@@ -138,7 +139,6 @@ export default function CTASection() {
                     Prenez contact maintenant
                   </span>
                 </motion.button>
-                ƒ
               </Link>
             </motion.div>
           </motion.div>
@@ -159,7 +159,8 @@ export default function CTASection() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
             >
-              Vous ne rentrez pas pas dans les cases ? Parlons-en.
+              Vous ne rentrez pas pas dans les cases ?{" "}
+              <span className="whitespace-nowrap">Parlons-en.</span>
             </motion.h2>
 
             <motion.div
